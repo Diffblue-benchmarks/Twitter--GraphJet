@@ -1,6 +1,5 @@
 # Tested on Deeptest release 1.9.1
 cbmcArguments:
-  classpath: '/tools/cbmc/models-simple-overlay.jar:/tools/cbmc/models.jar:.'
   cover-function-only: false
   depth: false
   do-not-test-methods-with-access: [ private ]
@@ -11,7 +10,8 @@ phases:
     java-assume-inputs-non-null: true
     max-nondet-array-length: 10
     string-non-empty: true
-    unwind: 1
+    max-nondet-string-length: 2
+    unwind: 2
 -
   timeout: 300
   cbmcArguments:
