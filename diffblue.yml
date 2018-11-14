@@ -8,15 +8,15 @@ phases:
   timeout: 300
   cbmcArguments:
     java-assume-inputs-non-null: true
-    max-nondet-array-length: 10
+    max-nondet-array-length: 2
     string-non-empty: true
     max-nondet-string-length: 2
-    unwind: 2
+    unwind: 3
 -
   timeout: 300
   cbmcArguments:
     max-nondet-array-length: 20
-    unwind: 2
+    unwind: 1
 -
   timeout: 300
   cbmcArguments:
