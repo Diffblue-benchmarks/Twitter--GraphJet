@@ -1,5 +1,5 @@
 testCmd: mvn test -fn
-cbmcArguments:
+skipVerification: true
 phases:
 -
 #0
