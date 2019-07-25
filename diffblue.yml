@@ -3,6 +3,7 @@
 # Do not change any of the values manually to keep options uniform across all benchmarks
 testCmd: mvn test -fn
 skipVerification: true
+staticValuesJson: true
 cbmcArguments:
   java-max-vla-length: 100000
   depth: false
