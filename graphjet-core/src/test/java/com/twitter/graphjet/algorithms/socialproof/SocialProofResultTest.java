@@ -11,21 +11,21 @@ import org.junit.rules.ExpectedException;
 public class SocialProofResultTest {
   @Rule
   public ExpectedException thrown = ExpectedException.none();
-  @Test
-  public void constructorTest() {
-    // Arrange
-    Long node = Long.getLong("aaaaa");
-    Byte2ObjectAVLTreeMap<LongSet> byte2ObjectAVLTreeMap = new Byte2ObjectAVLTreeMap<LongSet>();
-    Byte resultByte = new Byte((byte) 0);
-    LongAVLTreeSet longAVLTreeSet = new LongAVLTreeSet();
-    Long.getLong("aaaaa");
-    byte2ObjectAVLTreeMap.put((Object) resultByte, longAVLTreeSet);
-    double weight = 1.0;
-    RecommendationType recommendationType = RecommendationType.HASHTAG;
-
-    // Act and Assert
-    thrown.expect(NullPointerException.class);
-    new SocialProofResult(node, (it.unimi.dsi.fastutil.bytes.Byte2ObjectMap<LongSet>) byte2ObjectAVLTreeMap, weight,
-        recommendationType);
-  }
+//failed_compile @Test
+//  public void constructorTest() {
+//    // Arrange
+//    Long node = Long.getLong("aaaaa");
+//    Byte2ObjectAVLTreeMap<LongSet> byte2ObjectAVLTreeMap = new Byte2ObjectAVLTreeMap<LongSet>();
+//    Byte resultByte = new Byte((byte) 0);
+//    LongAVLTreeSet longAVLTreeSet = new LongAVLTreeSet();
+//    Long.getLong("aaaaa");
+//    byte2ObjectAVLTreeMap.put((Object) resultByte, longAVLTreeSet);
+//    double weight = 1.0;
+//    RecommendationType recommendationType = RecommendationType.HASHTAG;
+//
+//    // Act and Assert
+//    thrown.expect(NullPointerException.class);
+//    new SocialProofResult(node, (it.unimi.dsi.fastutil.bytes.Byte2ObjectMap<LongSet>) byte2ObjectAVLTreeMap, weight,
+//        recommendationType);
+//  }
 }
