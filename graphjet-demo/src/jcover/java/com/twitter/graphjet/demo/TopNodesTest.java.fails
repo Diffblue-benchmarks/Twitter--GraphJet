@@ -1,0 +1,31 @@
+package com.twitter.graphjet.demo;
+
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.core.Is.is;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+
+import org.junit.Test;
+
+/**
+ * Unit tests for com.twitter.graphjet.demo.TopNodes
+ *
+ * @author Diffblue JCover
+ */
+
+public class TopNodesTest {
+
+    @Test(timeout=10000)
+    public void getNodesReturnsEmpty() {
+        assertTrue(new TopNodes(1).getNodes().isEmpty());
+    }
+
+    @Test(timeout=10000)
+    public void offerNodeIdIsOneAndScoreIsOne() {
+        TopNodes topNodes = new TopNodes(1);
+        topNodes.offer(1L, 1.0);
+        assertThat(topNodes.getNodes().size(), is(1));
+        assertThat(topNodes.getNodes().get(0).getNode(), is(1L));
+        assertEquals(1.0, topNodes.getNodes().get(0).getValue(), 0);
+    }
+}

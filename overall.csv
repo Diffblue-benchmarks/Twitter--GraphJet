@@ -1,0 +1,216 @@
+,,,Spring Components,,,Dcover No Jcover fuzz,time(Seconds):,286,Dcover Jcover-fuzz,time(Seconds):,1881,Jcover test verification on,time(Seconds):,304
+GROUP,PACKAGE,CLASS,@Service,@Controller,Info,LINE_MISSED,LINE_COVERED,Coverage,LINE_MISSED,LINE_COVERED,Coverage,LINE_MISSED,LINE_COVERED,Coverage
+GraphJet Core,com.twitter.graphjet.algorithms.salsa,SalsaNodeVisitor.SimpleNodeVisitor,n/a,n/a,Could not find file,1,2,0.6666666666666666,1,2,0.6666666666666666,3,0,0.0
+GraphJet Core,com.twitter.graphjet.algorithms.salsa,SalsaNodeVisitor.WeightedNodeVisitor,n/a,n/a,Could not find file,7,2,0.2222222222222222,7,2,0.2222222222222222,9,0,0.0
+GraphJet Core,com.twitter.graphjet.algorithms.salsa,SingleSalsaIteration,,,,2,2,0.5,2,2,0.5,2,2,0.5
+GraphJet Core,com.twitter.graphjet.algorithms.salsa,SalsaRequest,,,,4,21,0.84,4,21,0.84,5,20,0.8
+GraphJet Core,com.twitter.graphjet.algorithms.salsa,SalsaStats,,,,20,29,0.5918367346938775,20,29,0.5918367346938775,30,19,0.3877551020408163
+GraphJet Core,com.twitter.graphjet.algorithms.salsa,SalsaNodeVisitor,,,,1,0,0.0,1,0,0.0,1,0,0.0
+GraphJet Core,com.twitter.graphjet.algorithms.salsa,SalsaIterations,,,,61,0,0.0,61,0,0.0,61,0,0.0
+GraphJet Core,com.twitter.graphjet.algorithms.salsa,SalsaNodeVisitor.NodeVisitor,n/a,n/a,Could not find file,9,3,0.25,9,3,0.25,12,0,0.0
+GraphJet Core,com.twitter.graphjet.algorithms.salsa,SalsaNodeVisitor.WeightedNodeVisitorWithSocialProof,n/a,n/a,Could not find file,4,2,0.3333333333333333,4,2,0.3333333333333333,6,0,0.0
+GraphJet Core,com.twitter.graphjet.algorithms.salsa,SalsaNodeVisitor.NodeVisitorWithSocialProof,n/a,n/a,Could not find file,4,2,0.3333333333333333,4,2,0.3333333333333333,6,0,0.0
+GraphJet Core,com.twitter.graphjet.algorithms.salsa,SalsaResponse,,,,0,4,1.0,0,4,1.0,0,4,1.0
+GraphJet Core,com.twitter.graphjet.algorithms.salsa,SalsaRequestBuilder,,,,4,39,0.9069767441860465,4,39,0.9069767441860465,0,43,1.0
+GraphJet Core,com.twitter.graphjet.algorithms.salsa,CommonInternalState,,,,23,12,0.34285714285714286,23,12,0.34285714285714286,25,10,0.2857142857142857
+GraphJet Core,com.twitter.graphjet.algorithms.salsa,SalsaSelectResults,,,,61,0,0.0,61,0,0.0,61,0,0.0
+GraphJet Core,com.twitter.graphjet.algorithms,ConnectingUsersWithMetadata,,,,17,0,0.0,17,0,0.0,6,11,0.6470588235294118
+GraphJet Core,com.twitter.graphjet.algorithms,RecommendationResponse,,,,0,4,1.0,0,4,1.0,0,4,1.0
+GraphJet Core,com.twitter.graphjet.algorithms,RecommendationRequest,,,,0,8,1.0,0,8,1.0,0,8,1.0
+GraphJet Core,com.twitter.graphjet.algorithms,NodeInfo,,,,12,34,0.7391304347826086,12,34,0.7391304347826086,11,35,0.7608695652173914
+GraphJet Core,com.twitter.graphjet.algorithms,IdentityIDMask,,,,0,2,1.0,0,2,1.0,0,2,1.0
+GraphJet Core,com.twitter.graphjet.algorithms,MultiThreadedPageRank,,,,58,0,0.0,58,0,0.0,58,0,0.0
+GraphJet Core,com.twitter.graphjet.algorithms,RecommendationStats,,,,18,55,0.7534246575342466,18,55,0.7534246575342466,24,49,0.6712328767123288
+GraphJet Core,com.twitter.graphjet.algorithms,TweetIDMask,,,,0,9,1.0,0,9,1.0,0,9,1.0
+GraphJet Core,com.twitter.graphjet.algorithms,MultiThreadedPageRank.PageRankWorker,n/a,n/a,Could not find file,22,0,0.0,22,0,0.0,22,0,0.0
+GraphJet Core,com.twitter.graphjet.algorithms,NodeInfoHelper,,,,23,6,0.20689655172413793,23,6,0.20689655172413793,18,11,0.3793103448275862
+GraphJet Core,com.twitter.graphjet.algorithms,SimilarityInfo,,,,14,16,0.5333333333333333,14,16,0.5333333333333333,14,16,0.5333333333333333
+GraphJet Core,com.twitter.graphjet.algorithms,SimilarityResponse,,,,0,6,1.0,0,6,1.0,0,6,1.0
+GraphJet Core,com.twitter.graphjet.algorithms,PageRank,,,,56,0,0.0,6,50,0.8928571428571429,56,0,0.0
+GraphJet Core,com.twitter.graphjet.algorithms,RecommendationType,,,,0,13,1.0,0,13,1.0,0,13,1.0
+GraphJet Core,com.twitter.graphjet.algorithms,SimilarityRequest,,,,0,6,1.0,0,6,1.0,0,6,1.0
+GraphJet Core,com.twitter.graphjet.stats,NullStatsReceiver,,,,0,4,1.0,0,4,1.0,1,3,0.75
+GraphJet Core,com.twitter.graphjet.stats,NullStatsReceiver.new Counter() {...},n/a,n/a,Could not find file,0,3,1.0,0,3,1.0,2,1,0.3333333333333333
+GraphJet Core,com.twitter.graphjet.stats,DefaultStatsReceiver,,,,1,11,0.9166666666666666,1,11,0.9166666666666666,2,10,0.8333333333333334
+GraphJet Core,com.twitter.graphjet.stats,DefaultCounter,,,,0,8,1.0,0,8,1.0,0,8,1.0
+GraphJet Core,com.twitter.graphjet.bipartite.segment,LeftIndexedReaderAccessibleInfoProvider,,,,4,7,0.6363636363636364,4,7,0.6363636363636364,11,0,0.0
+GraphJet Core,com.twitter.graphjet.bipartite.segment,NodeMetadataLeftIndexedReaderAccessibleInfo,,,,1,4,0.8,1,4,0.8,5,0,0.0
+GraphJet Core,com.twitter.graphjet.bipartite.segment,PowerLawBipartiteGraphSegment,,,,0,11,1.0,0,11,1.0,11,0,0.0
+GraphJet Core,com.twitter.graphjet.bipartite.segment,NodeMetadataLeftIndexedReaderAccessibleInfoProvider,,,,0,10,1.0,0,10,1.0,10,0,0.0
+GraphJet Core,com.twitter.graphjet.bipartite.segment,ReaderAccessibleInfo,,,,0,4,1.0,0,4,1.0,4,0,0.0
+GraphJet Core,com.twitter.graphjet.bipartite.segment,ReaderAccessibleInfoProvider,,,,0,11,1.0,0,11,1.0,11,0,0.0
+GraphJet Core,com.twitter.graphjet.bipartite.segment,LeftIndexedPowerLawSegmentProvider,,,,0,8,1.0,0,8,1.0,8,0,0.0
+GraphJet Core,com.twitter.graphjet.bipartite.segment,NodeMetadataLeftIndexedBipartiteGraphSegment,,,,15,6,0.2857142857142857,15,6,0.2857142857142857,21,0,0.0
+GraphJet Core,com.twitter.graphjet.bipartite.segment,PowerLawBipartiteGraphSegment.EdgeIteratorFactory,n/a,n/a,Could not find file,3,4,0.5714285714285714,3,4,0.5714285714285714,7,0,0.0
+GraphJet Core,com.twitter.graphjet.bipartite.segment,RightNodeMetadataLeftIndexedPowerLawSegmentProvider,,,,0,9,1.0,0,9,1.0,9,0,0.0
+GraphJet Core,com.twitter.graphjet.bipartite.segment,IdentityEdgeTypeMask,,,,0,5,1.0,0,5,1.0,0,5,1.0
+GraphJet Core,com.twitter.graphjet.bipartite.segment,NodeMetadataLeftIndexedPowerLawSegmentProvider,,,,0,9,1.0,0,9,1.0,9,0,0.0
+GraphJet Core,com.twitter.graphjet.bipartite.segment,LeftIndexedPowerLawBipartiteGraphSegment,,,,0,10,1.0,0,10,1.0,10,0,0.0
+GraphJet Core,com.twitter.graphjet.bipartite.segment,LeftIndexedBipartiteGraphSegment,,,,31,32,0.5079365079365079,31,32,0.5079365079365079,63,0,0.0
+GraphJet Core,com.twitter.graphjet.bipartite.segment,RightNodeMetadataLeftIndexedPowerLawBipartiteGraphSegment,,,,3,11,0.7857142857142857,3,11,0.7857142857142857,14,0,0.0
+GraphJet Core,com.twitter.graphjet.bipartite.segment,RightNodeMetadataLeftIndexedBipartiteGraphSegment,,,,17,6,0.2608695652173913,17,6,0.2608695652173913,23,0,0.0
+GraphJet Core,com.twitter.graphjet.bipartite.segment,NodeMetadataInternalIdToLongIterator,,,,20,7,0.25925925925925924,20,7,0.25925925925925924,27,0,0.0
+GraphJet Core,com.twitter.graphjet.bipartite.segment,BipartiteGraphSegment,,,,38,10,0.20833333333333334,38,10,0.20833333333333334,48,0,0.0
+GraphJet Core,com.twitter.graphjet.bipartite.segment,LeftIndexedReaderAccessibleInfo,,,,0,12,1.0,0,12,1.0,12,0,0.0
+GraphJet Core,com.twitter.graphjet.bipartite.segment,RecycleSegmentMemory,,,,8,0,0.0,8,0,0.0,8,0,0.0
+GraphJet Core,com.twitter.graphjet.bipartite.segment,PowerLawSegmentProvider,,,,2,8,0.8,2,8,0.8,10,0,0.0
+GraphJet Core,com.twitter.graphjet.bipartite.segment,NodeMetadataLeftIndexedPowerLawBipartiteGraphSegment,,,,3,11,0.7857142857142857,3,11,0.7857142857142857,14,0,0.0
+GraphJet Core,com.twitter.graphjet.bipartite.segment,LeftRegularBipartiteGraphSegment,,,,0,8,1.0,0,8,1.0,8,0,0.0
+GraphJet Core,com.twitter.graphjet.bipartite.segment,BipartiteGraphSegmentProvider,,,,0,6,1.0,0,6,1.0,6,0,0.0
+GraphJet Core,com.twitter.graphjet.bipartite.segment,InternalIdToLongIterator,,,,7,10,0.5882352941176471,7,10,0.5882352941176471,17,0,0.0
+GraphJet Core,com.twitter.graphjet.algorithms.intersection,JaccardUpdateNormalization,,,,0,3,1.0,0,3,1.0,0,3,1.0
+GraphJet Core,com.twitter.graphjet.algorithms.intersection,IntersectionSimilarity,,,,75,16,0.17582417582417584,75,16,0.17582417582417584,91,0,0.0
+GraphJet Core,com.twitter.graphjet.algorithms.intersection,OverlapUpdateNormalization,,,,0,3,1.0,0,3,1.0,0,3,1.0
+GraphJet Core,com.twitter.graphjet.algorithms.intersection,IntersectionSimilarityRequest,,,,0,20,1.0,0,20,1.0,0,20,1.0
+GraphJet Core,com.twitter.graphjet.algorithms.intersection,RelatedTweetUpdateNormalization,,,,0,1,1.0,0,1,1.0,0,1,1.0
+GraphJet Core,com.twitter.graphjet.algorithms.intersection,InverseDegreeUpdateNormalization,,,,0,3,1.0,0,3,1.0,0,3,1.0
+GraphJet Core,com.twitter.graphjet.algorithms.intersection,ScaledUpdateNormalization,,,,0,5,1.0,0,5,1.0,0,5,1.0
+GraphJet Core,com.twitter.graphjet.algorithms.intersection,CosineUpdateNormalization,,,,0,3,1.0,0,3,1.0,0,3,1.0
+GraphJet Core,com.twitter.graphjet.directed,OutIndexedPowerLawMultiSegmentDirectedGraph,,,,4,6,0.6,4,6,0.6,10,0,0.0
+GraphJet Core,com.twitter.graphjet.algorithms.counting.moment,MomentRecommendationInfo,,,,0,3,1.0,0,3,1.0,0,3,1.0
+GraphJet Core,com.twitter.graphjet.algorithms.counting.moment,TopSecondDegreeByCountForMoment,,,,13,3,0.1875,13,3,0.1875,16,0,0.0
+GraphJet Core,com.twitter.graphjet.algorithms.counting.moment,TopSecondDegreeByCountMomentRecsGenerator,,,,16,0,0.0,16,0,0.0,0,16,1.0
+GraphJet Core,com.twitter.graphjet.algorithms.counting.moment,TopSecondDegreeByCountRequestForMoment,,,,0,10,1.0,0,10,1.0,0,10,1.0
+GraphJet Core,com.twitter.graphjet.bipartite.optimizer,Optimizer,,,,53,12,0.18461538461538463,53,12,0.18461538461538463,65,0,0.0
+GraphJet Core,com.twitter.graphjet.bipartite.optimizer,Optimizer.GraphOptimizerJob,n/a,n/a,Could not find file,6,0,0.0,6,0,0.0,6,0,0.0
+GraphJet Core,com.twitter.graphjet.hashing,ArrayBasedIntToIntArrayMap,,,,15,45,0.75,14,46,0.7666666666666667,60,0,0.0
+GraphJet Core,com.twitter.graphjet.hashing,SmallArrayBasedLongToDoubleMap.Pair,n/a,n/a,Could not find file,15,0,0.0,15,0,0.0,15,0,0.0
+GraphJet Core,com.twitter.graphjet.hashing,IntArrayIterator,,,,2,13,0.8666666666666667,2,13,0.8666666666666667,15,0,0.0
+GraphJet Core,com.twitter.graphjet.hashing,ArrayBasedIntToIntArrayMap.ReaderAccessibleInfo,n/a,n/a,Could not find file,0,4,1.0,0,4,1.0,4,0,0.0
+GraphJet Core,com.twitter.graphjet.hashing,ArrayBasedLongToInternalIntBiMap.ReaderAccessibleInfo,n/a,n/a,Could not find file,0,5,1.0,0,5,1.0,5,0,0.0
+GraphJet Core,com.twitter.graphjet.hashing,ShardedBigLongArray,,,,16,57,0.7808219178082192,4,69,0.9452054794520548,73,0,0.0
+GraphJet Core,com.twitter.graphjet.hashing,SmallArrayBasedLongToDoubleMap.new Swapper() {...},n/a,n/a,Could not find file,11,0,0.0,11,0,0.0,10,1,0.09090909090909091
+GraphJet Core,com.twitter.graphjet.hashing,SmallArrayBasedLongToDoubleMap.new IntComparator() {...},n/a,n/a,Could not find file,9,0,0.0,9,0,0.0,8,1,0.1111111111111111
+GraphJet Core,com.twitter.graphjet.hashing,IntToIntPairConcurrentHashMap,,,,37,59,0.6145833333333334,25,71,0.7395833333333334,96,0,0.0
+GraphJet Core,com.twitter.graphjet.hashing,ArrayBasedLongToInternalIntFixedLengthBiMap,,,,32,47,0.5949367088607594,30,49,0.620253164556962,79,0,0.0
+GraphJet Core,com.twitter.graphjet.hashing,ShardedBigIntArray.ReaderAccessibleInfo,n/a,n/a,Could not find file,0,3,1.0,0,3,1.0,3,0,0.0
+GraphJet Core,com.twitter.graphjet.hashing,ArrayBasedLongToInternalIntBiMap,,,,30,41,0.5774647887323944,28,43,0.6056338028169014,71,0,0.0
+GraphJet Core,com.twitter.graphjet.hashing,IntToIntPairConcurrentHashMap.ReaderAccessibleInfo,n/a,n/a,Could not find file,0,5,1.0,0,5,1.0,5,0,0.0
+GraphJet Core,com.twitter.graphjet.hashing,IntToIntPairArrayIndexBasedMap,,,,1,24,0.96,1,24,0.96,25,0,0.0
+GraphJet Core,com.twitter.graphjet.hashing,ShardedBigLongArray.ReaderAccessibleInfo,n/a,n/a,Could not find file,0,3,1.0,0,3,1.0,3,0,0.0
+GraphJet Core,com.twitter.graphjet.hashing,SmallArrayBasedLongToDoubleMap,,,,23,45,0.6617647058823529,23,45,0.6617647058823529,21,47,0.6911764705882353
+GraphJet Core,com.twitter.graphjet.hashing,ShardedBigIntArray,,,,13,59,0.8194444444444444,4,68,0.9444444444444444,72,0,0.0
+GraphJet Core,com.twitter.graphjet.bipartite,LeftSegmentEdgeAccessor,,,,0,14,1.0,0,14,1.0,6,8,0.5714285714285714
+GraphJet Core,com.twitter.graphjet.bipartite,ChronologicalMultiSegmentIterator,,,,9,0,0.0,9,0,0.0,9,0,0.0
+GraphJet Core,com.twitter.graphjet.bipartite,LeftIndexedMultiSegmentBipartiteGraph,,,,18,31,0.6326530612244898,18,31,0.6326530612244898,49,0,0.0
+GraphJet Core,com.twitter.graphjet.bipartite,ReverseChronologicalMultiSegmentIterator,,,,1,8,0.8888888888888888,1,8,0.8888888888888888,9,0,0.0
+GraphJet Core,com.twitter.graphjet.bipartite,RightSegmentRandomEdgeAccessor,,,,15,0,0.0,15,0,0.0,8,7,0.4666666666666667
+GraphJet Core,com.twitter.graphjet.bipartite,MultiSegmentPowerLawBipartiteGraph,,,,18,0,0.0,18,0,0.0,18,0,0.0
+GraphJet Core,com.twitter.graphjet.bipartite,SmallLeftRegularBipartiteGraph,,,,2,2,0.5,2,2,0.5,4,0,0.0
+GraphJet Core,com.twitter.graphjet.bipartite,MultiSegmentRandomIterator,,,,33,21,0.3888888888888889,33,21,0.3888888888888889,54,0,0.0
+GraphJet Core,com.twitter.graphjet.bipartite,MultiSegmentIterator,,,,8,19,0.7037037037037037,8,19,0.7037037037037037,27,0,0.0
+GraphJet Core,com.twitter.graphjet.bipartite,MultiSegmentReaderAccessibleInfo,,,,0,6,1.0,0,6,1.0,0,6,1.0
+GraphJet Core,com.twitter.graphjet.bipartite,RightNodeMetadataMultiSegmentIterator,,,,28,0,0.0,28,0,0.0,28,0,0.0
+GraphJet Core,com.twitter.graphjet.bipartite,RightSegmentEdgeAccessor,,,,15,0,0.0,15,0,0.0,7,8,0.5333333333333333
+GraphJet Core,com.twitter.graphjet.bipartite,SegmentEdgeAccessor,,,,0,5,1.0,0,5,1.0,2,3,0.6
+GraphJet Core,com.twitter.graphjet.bipartite,SegmentEdgeRandomAccessor,,,,0,4,1.0,0,4,1.0,0,4,1.0
+GraphJet Core,com.twitter.graphjet.bipartite,MultiSegmentReaderAccessibleInfoProvider,,,,4,28,0.875,4,28,0.875,32,0,0.0
+GraphJet Core,com.twitter.graphjet.bipartite,NodeMetadataLeftIndexedPowerLawMultiSegmentBipartiteGraph,,,,4,3,0.42857142857142855,4,3,0.42857142857142855,7,0,0.0
+GraphJet Core,com.twitter.graphjet.bipartite,LeftSegmentRandomEdgeAccessor,,,,4,10,0.7142857142857143,4,10,0.7142857142857143,7,7,0.5
+GraphJet Core,com.twitter.graphjet.bipartite,RightNodeMetadataLeftIndexedMultiSegmentBipartiteGraph,,,,10,3,0.23076923076923078,10,3,0.23076923076923078,13,0,0.0
+GraphJet Core,com.twitter.graphjet.bipartite,MultiSegmentBipartiteGraph,,,,18,0,0.0,18,0,0.0,18,0,0.0
+GraphJet Core,com.twitter.graphjet.bipartite,NodeMetadataMultiSegmentIterator,,,,5,0,0.0,5,0,0.0,5,0,0.0
+GraphJet Core,com.twitter.graphjet.bipartite,LeftIndexedPowerLawMultiSegmentBipartiteGraph,,,,2,10,0.8333333333333334,2,10,0.8333333333333334,12,0,0.0
+GraphJet Core,com.twitter.graphjet.bipartite,RightNodeMetadataLeftIndexedPowerLawMultiSegmentBipartiteGraph,,,,4,3,0.42857142857142855,4,3,0.42857142857142855,7,0,0.0
+GraphJet Core,com.twitter.graphjet.bipartite,NodeMetadataLeftIndexedMultiSegmentBipartiteGraph,,,,10,3,0.23076923076923078,10,3,0.23076923076923078,13,0,0.0
+GraphJet Core,com.twitter.graphjet.algorithms.filters,ExactUserSocialProofSizeFilter,,,,1,9,0.9,1,9,0.9,10,0,0.0
+GraphJet Core,com.twitter.graphjet.algorithms.filters,RelatedTweetDirectInteractionsFilter,,,,0,5,1.0,0,5,1.0,5,0,0.0
+GraphJet Core,com.twitter.graphjet.algorithms.filters,DirectInteractionsFilter,,,,2,5,0.7142857142857143,2,5,0.7142857142857143,7,0,0.0
+GraphJet Core,com.twitter.graphjet.algorithms.filters,ANDFilters,,,,11,3,0.21428571428571427,11,3,0.21428571428571427,14,0,0.0
+GraphJet Core,com.twitter.graphjet.algorithms.filters,MinEngagementFilter,,,,0,5,1.0,0,5,1.0,5,0,0.0
+GraphJet Core,com.twitter.graphjet.algorithms.filters,TweetTimeRangeFilter,,,,0,8,1.0,0,8,1.0,8,0,0.0
+GraphJet Core,com.twitter.graphjet.algorithms.filters,SocialProofTypesFilter,,,,7,2,0.2222222222222222,7,2,0.2222222222222222,9,0,0.0
+GraphJet Core,com.twitter.graphjet.algorithms.filters,MinNumInteractionsFilter,,,,1,6,0.8571428571428571,1,6,0.8571428571428571,7,0,0.0
+GraphJet Core,com.twitter.graphjet.algorithms.filters,RequestedSetFilter,,,,2,5,0.7142857142857143,2,5,0.7142857142857143,7,0,0.0
+GraphJet Core,com.twitter.graphjet.algorithms.filters,DirectInteractions,,,,4,8,0.6666666666666666,4,8,0.6666666666666666,12,0,0.0
+GraphJet Core,com.twitter.graphjet.algorithms.filters,RelatedTweetFilterChain,,,,7,4,0.36363636363636365,7,4,0.36363636363636365,5,6,0.5454545454545454
+GraphJet Core,com.twitter.graphjet.algorithms.filters,ResultFilter,,,,0,6,1.0,0,6,1.0,6,0,0.0
+GraphJet Core,com.twitter.graphjet.algorithms.filters,TweetAuthorFilter,,,,19,20,0.5128205128205128,19,20,0.5128205128205128,39,0,0.0
+GraphJet Core,com.twitter.graphjet.algorithms.filters,RelatedTweetFilterChain.new RelatedTweetFilterChain() {...},n/a,n/a,Could not find file,1,1,0.5,1,1,0.5,1,1,0.5
+GraphJet Core,com.twitter.graphjet.algorithms.filters,ResultFilterChain,,,,11,3,0.21428571428571427,11,3,0.21428571428571427,5,9,0.6428571428571429
+GraphJet Core,com.twitter.graphjet.algorithms.filters,RelatedTweetFilter,,,,0,6,1.0,0,6,1.0,6,0,0.0
+GraphJet Core,com.twitter.graphjet.algorithms.filters,RecentEdgeMetadataFilter,,,,4,11,0.7333333333333333,4,11,0.7333333333333333,15,0,0.0
+GraphJet Core,com.twitter.graphjet.algorithms.filters,TweetCardFilter,,,,1,10,0.9090909090909091,1,10,0.9090909090909091,11,0,0.0
+GraphJet Core,com.twitter.graphjet.algorithms.filters,RecentTweetFilter,,,,2,6,0.75,2,6,0.75,8,0,0.0
+GraphJet Core,com.twitter.graphjet.bipartite.edgepool,AbstractPowerLawDegreeEdgePool,,,,48,26,0.35135135135135137,48,26,0.35135135135135137,74,0,0.0
+GraphJet Core,com.twitter.graphjet.bipartite.edgepool,WithEdgeMetadataPowerLawDegreeEdgePool,,,,24,17,0.4146341463414634,24,17,0.4146341463414634,41,0,0.0
+GraphJet Core,com.twitter.graphjet.bipartite.edgepool,RegularDegreeEdgePool.ReaderAccessibleInfo,n/a,n/a,Could not find file,0,7,1.0,0,7,1.0,7,0,0.0
+GraphJet Core,com.twitter.graphjet.bipartite.edgepool,OptimizedEdgePool.ReaderAccessibleInfo,n/a,n/a,Could not find file,0,7,1.0,0,7,1.0,7,0,0.0
+GraphJet Core,com.twitter.graphjet.bipartite.edgepool,RegularDegreeEdgeIterator,,,,2,13,0.8666666666666667,2,13,0.8666666666666667,15,0,0.0
+GraphJet Core,com.twitter.graphjet.bipartite.edgepool,WithEdgeMetadataOptimizedEdgePool,,,,0,11,1.0,0,11,1.0,11,0,0.0
+GraphJet Core,com.twitter.graphjet.bipartite.edgepool,OptimizedEdgePool,,,,0,9,1.0,0,9,1.0,9,0,0.0
+GraphJet Core,com.twitter.graphjet.bipartite.edgepool,OptimizedEdgeRandomIterator,,,,2,7,0.7777777777777778,2,7,0.7777777777777778,9,0,0.0
+GraphJet Core,com.twitter.graphjet.bipartite.edgepool,OptimizedEdgeIterator,,,,0,12,1.0,0,12,1.0,12,0,0.0
+GraphJet Core,com.twitter.graphjet.bipartite.edgepool,PowerLawDegreeEdgeIterator,,,,31,11,0.2619047619047619,31,11,0.2619047619047619,42,0,0.0
+GraphJet Core,com.twitter.graphjet.bipartite.edgepool,WithEdgeMetadataOptimizedEdgePool.WithEdgeMetadataReaderAccessibleInfo,n/a,n/a,Could not find file,0,8,1.0,0,8,1.0,8,0,0.0
+GraphJet Core,com.twitter.graphjet.bipartite.edgepool,RecyclePoolMemory,,,,4,7,0.6363636363636364,4,7,0.6363636363636364,11,0,0.0
+GraphJet Core,com.twitter.graphjet.bipartite.edgepool,WithEdgeMetadataRegularDegreeEdgePool,,,,2,21,0.9130434782608695,2,21,0.9130434782608695,23,0,0.0
+GraphJet Core,com.twitter.graphjet.bipartite.edgepool,WithEdgeMetadataRegularDegreeEdgePool.WithEdgeMetadataReaderAccessibleInfo,n/a,n/a,Could not find file,0,8,1.0,0,8,1.0,8,0,0.0
+GraphJet Core,com.twitter.graphjet.bipartite.edgepool,PowerLawDegreeEdgePool,,,,24,17,0.4146341463414634,24,17,0.4146341463414634,41,0,0.0
+GraphJet Core,com.twitter.graphjet.bipartite.edgepool,AbstractRegularDegreeEdgePool,,,,19,30,0.6122448979591837,19,30,0.6122448979591837,49,0,0.0
+GraphJet Core,com.twitter.graphjet.bipartite.edgepool,AbstractPowerLawDegreeEdgePool.ReaderAccessibleInfo,n/a,n/a,Could not find file,0,8,1.0,0,8,1.0,8,0,0.0
+GraphJet Core,com.twitter.graphjet.bipartite.edgepool,RegularDegreeEdgePool,,,,1,21,0.9545454545454546,1,21,0.9545454545454546,22,0,0.0
+GraphJet Core,com.twitter.graphjet.bipartite.edgepool,RegularDegreeEdgeRandomIterator,,,,2,7,0.7777777777777778,2,7,0.7777777777777778,9,0,0.0
+GraphJet Core,com.twitter.graphjet.bipartite.edgepool,PowerLawDegreeEdgeRandomIterator,,,,9,4,0.3076923076923077,9,4,0.3076923076923077,13,0,0.0
+GraphJet Core,com.twitter.graphjet.bipartite.edgepool,AbstractOptimizedEdgePool,,,,10,24,0.7058823529411765,10,24,0.7058823529411765,34,0,0.0
+GraphJet Core,com.twitter.graphjet.algorithms.socialproof,NodeMetadataSocialProofResult,,,,17,0,0.0,17,0,0.0,4,13,0.7647058823529411
+GraphJet Core,com.twitter.graphjet.algorithms.socialproof,SocialProofRequest,,,,0,7,1.0,0,7,1.0,0,7,1.0
+GraphJet Core,com.twitter.graphjet.algorithms.socialproof,TweetSocialProofGenerator,,,,0,4,1.0,0,4,1.0,4,0,0.0
+GraphJet Core,com.twitter.graphjet.algorithms.socialproof,NodeMetadataSocialProofGenerator,,,,72,10,0.12195121951219512,72,10,0.12195121951219512,82,0,0.0
+GraphJet Core,com.twitter.graphjet.algorithms.socialproof,NodeMetadataSocialProofRequest,,,,7,0,0.0,7,0,0.0,0,7,1.0
+GraphJet Core,com.twitter.graphjet.algorithms.socialproof,MomentSocialProofGenerator,,,,0,4,1.0,0,4,1.0,4,0,0.0
+GraphJet Core,com.twitter.graphjet.algorithms.socialproof,SocialProofResponse,,,,0,2,1.0,0,2,1.0,0,2,1.0
+GraphJet Core,com.twitter.graphjet.algorithms.socialproof,SocialProofGenerator,,,,74,6,0.075,74,6,0.075,80,0,0.0
+GraphJet Core,com.twitter.graphjet.algorithms.socialproof,SocialProofResult,,,,15,0,0.0,15,0,0.0,2,13,0.8666666666666667
+GraphJet Core,com.twitter.graphjet.math,AliasTableUtil,,,,55,0,0.0,55,0,0.0,53,2,0.03636363636363636
+GraphJet Core,com.twitter.graphjet.math,IntArrayAliasTable,,,,10,8,0.4444444444444444,10,8,0.4444444444444444,9,9,0.5
+GraphJet Core,com.twitter.graphjet.algorithms.counting.tweetfeature,TweetFeature,,,,0,9,1.0,0,9,1.0,0,9,1.0
+GraphJet Core,com.twitter.graphjet.algorithms.counting.tweetfeature,TweetRecommendationInfo,,,,0,5,1.0,0,5,1.0,0,5,1.0
+GraphJet Core,com.twitter.graphjet.algorithms.counting.tweetfeature,TopSecondDegreeByCountTweetRecsGenerator,,,,65,0,0.0,65,0,0.0,39,26,0.4
+GraphJet Core,com.twitter.graphjet.algorithms.counting.tweetfeature,TopSecondDegreeByCountForTweet,,,,31,5,0.1388888888888889,30,6,0.16666666666666666,36,0,0.0
+GraphJet Core,com.twitter.graphjet.algorithms.counting.user,TopSecondDegreeByCountRequestForUser,,,,0,10,1.0,0,10,1.0,0,10,1.0
+GraphJet Core,com.twitter.graphjet.algorithms.counting.user,UserRecommendationInfo,,,,0,3,1.0,0,3,1.0,0,3,1.0
+GraphJet Core,com.twitter.graphjet.algorithms.counting.user,TopSecondDegreeByCountUserRecsGenerator,,,,16,0,0.0,16,0,0.0,0,16,1.0
+GraphJet Core,com.twitter.graphjet.algorithms.counting.user,TopSecondDegreeByCountForUser,,,,14,7,0.3333333333333333,13,8,0.38095238095238093,21,0,0.0
+GraphJet Core,com.twitter.graphjet.bipartite.api,ReadOnlyIntIterator,,,,1,1,0.5,1,1,0.5,2,0,0.0
+GraphJet Core,com.twitter.graphjet.algorithms.counting.tweet,TweetMetadataRecommendationInfo,,,,39,17,0.30357142857142855,39,17,0.30357142857142855,31,25,0.44642857142857145
+GraphJet Core,com.twitter.graphjet.algorithms.counting.tweet,TopSecondDegreeByCountRequestForTweet,,,,0,14,1.0,0,14,1.0,0,14,1.0
+GraphJet Core,com.twitter.graphjet.algorithms.counting.tweet,TopSecondDegreeByCountForTweet,,,,57,5,0.08064516129032258,51,11,0.1774193548387097,62,0,0.0
+GraphJet Core,com.twitter.graphjet.algorithms.counting.tweet,TopSecondDegreeByCountTweetMetadataRecsGenerator,,,,54,0,0.0,54,0,0.0,12,42,0.7777777777777778
+GraphJet Core,com.twitter.graphjet.algorithms.counting.tweet,TopSecondDegreeByCountTweetRecsGenerator,,,,64,0,0.0,64,0,0.0,38,26,0.40625
+GraphJet Core,com.twitter.graphjet.algorithms.counting.tweet,TweetRecommendationInfo,,,,0,3,1.0,0,3,1.0,0,3,1.0
+GraphJet Core,com.twitter.graphjet.algorithms.salsa.fullgraph,LeftSalsaIteration,,,,32,7,0.1794871794871795,32,7,0.1794871794871795,39,0,0.0
+GraphJet Core,com.twitter.graphjet.algorithms.salsa.fullgraph,Salsa,,,,16,0,0.0,16,0,0.0,16,0,0.0
+GraphJet Core,com.twitter.graphjet.algorithms.salsa.fullgraph,SalsaInternalState,,,,0,4,1.0,0,4,1.0,1,3,0.75
+GraphJet Core,com.twitter.graphjet.algorithms.salsa.fullgraph,FinalSalsaIteration,,,,0,3,1.0,0,3,1.0,3,0,0.0
+GraphJet Core,com.twitter.graphjet.algorithms.salsa.fullgraph,RightSalsaIteration,,,,10,3,0.23076923076923078,10,3,0.23076923076923078,7,6,0.46153846153846156
+GraphJet Core,com.twitter.graphjet.algorithms.counting,TopSecondDegreeByCount,,,,68,11,0.13924050632911392,68,11,0.13924050632911392,79,0,0.0
+GraphJet Core,com.twitter.graphjet.algorithms.counting,TopSecondDegreeByCountRecommendationInfo,,,,19,9,0.32142857142857145,19,9,0.32142857142857145,17,11,0.39285714285714285
+GraphJet Core,com.twitter.graphjet.algorithms.counting,GeneratorHelper,,,,36,0,0.0,36,0,0.0,7,29,0.8055555555555556
+GraphJet Core,com.twitter.graphjet.algorithms.counting,TopSecondDegreeByCountResponse,,,,0,4,1.0,0,4,1.0,0,4,1.0
+GraphJet Core,com.twitter.graphjet.algorithms.counting,TopSecondDegreeByCountRequest,,,,4,11,0.7333333333333333,4,11,0.7333333333333333,8,7,0.4666666666666667
+GraphJet Core,com.twitter.graphjet.algorithms.salsa.subgraph,SalsaSubgraphInternalState,,,,86,15,0.1485148514851485,86,15,0.1485148514851485,80,21,0.2079207920792079
+GraphJet Core,com.twitter.graphjet.algorithms.salsa.subgraph,LeftSubgraphSalsaIteration,,,,11,5,0.3125,11,5,0.3125,6,10,0.625
+GraphJet Core,com.twitter.graphjet.algorithms.salsa.subgraph,FinalSubgraphSalsaIteration,,,,3,3,0.5,3,3,0.5,6,0,0.0
+GraphJet Core,com.twitter.graphjet.algorithms.salsa.subgraph,RightSubgraphSalsaIteration,,,,6,0,0.0,6,0,0.0,0,6,1.0
+GraphJet Core,com.twitter.graphjet.algorithms.salsa.subgraph,SubgraphSalsa,,,,16,0,0.0,16,0,0.0,16,0,0.0
+GraphJet Core,com.twitter.graphjet.algorithms.randommultigraphneighbors,RandomMultiGraphNeighborsRequest,,,,0,8,1.0,0,8,1.0,0,8,1.0
+GraphJet Core,com.twitter.graphjet.algorithms.randommultigraphneighbors,RandomMultiGraphNeighborsResponse,,,,0,4,1.0,0,4,1.0,0,4,1.0
+GraphJet Core,com.twitter.graphjet.algorithms.randommultigraphneighbors,NeighborInfo,,,,12,14,0.5384615384615384,12,14,0.5384615384615384,12,14,0.5384615384615384
+GraphJet Core,com.twitter.graphjet.algorithms.randommultigraphneighbors,RandomMultiGraphNeighbors,,,,74,0,0.0,74,0,0.0,74,0,0.0
+GraphJet Demo,com.twitter.graphjet.demo,NodeValueEntry,,,,2,10,0.8333333333333334,0,12,1.0,3,9,0.75
+GraphJet Demo,com.twitter.graphjet.demo,TopTweetsServlet.GraphType,n/a,n/a,Could not find file,1,0,0.0,0,1,1.0,1,0,0.0
+GraphJet Demo,com.twitter.graphjet.demo,TwitterStreamReader.new StatusListener() {...},n/a,n/a,Could not find file,45,0,0.0,45,0,0.0,45,0,0.0
+GraphJet Demo,com.twitter.graphjet.demo,PageRankGraphJetDemo,,,,97,0,0.0,97,0,0.0,91,6,0.061855670103092786
+GraphJet Demo,com.twitter.graphjet.demo,GetEdgesServlet.Side,n/a,n/a,Could not find file,0,1,1.0,0,1,1.0,1,0,0.0
+GraphJet Demo,com.twitter.graphjet.demo,TopTweetsServlet,,,,34,0,0.0,28,6,0.17647058823529413,34,0,0.0
+GraphJet Demo,com.twitter.graphjet.demo,PageRankGraphJetDemo.PageRankGraphJetDemoArgs,n/a,n/a,Could not find file,10,0,0.0,10,0,0.0,0,10,1.0
+GraphJet Demo,com.twitter.graphjet.demo,TopHashtagsServlet,,,,29,5,0.14705882352941177,34,0,0.0,34,0,0.0
+GraphJet Demo,com.twitter.graphjet.demo,TopUsersServlet,,,,28,5,0.15151515151515152,33,0,0.0,33,0,0.0
+GraphJet Demo,com.twitter.graphjet.demo,TopNodes,,,,8,7,0.4666666666666667,8,7,0.4666666666666667,15,0,0.0
+GraphJet Demo,com.twitter.graphjet.demo,PageRankCassovaryDemo.PageRankCassovaryDemoArgs,n/a,n/a,Could not find file,5,0,0.0,5,0,0.0,0,5,1.0
+GraphJet Demo,com.twitter.graphjet.demo,PageRankCassovaryDemo,,,,63,0,0.0,63,0,0.0,57,6,0.09523809523809523
+GraphJet Demo,com.twitter.graphjet.demo,TwitterStreamReader.TwitterStreamReaderArgs,n/a,n/a,Could not find file,12,0,0.0,12,0,0.0,0,12,1.0
+GraphJet Demo,com.twitter.graphjet.demo,GetEdgesServlet,,,,20,4,0.16666666666666666,20,4,0.16666666666666666,24,0,0.0
+GraphJet Demo,com.twitter.graphjet.demo,TwitterStreamReader,,,,37,0,0.0,37,0,0.0,31,6,0.16216216216216217
+GraphJet Demo,com.twitter.graphjet.demo,GetSimilarHashtagsServlet,,,,29,4,0.12121212121212122,29,4,0.12121212121212122,33,0,0.0
