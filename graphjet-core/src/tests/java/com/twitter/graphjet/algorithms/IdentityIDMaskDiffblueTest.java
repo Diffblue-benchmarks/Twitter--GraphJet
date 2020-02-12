@@ -1,13 +1,21 @@
 package com.twitter.graphjet.algorithms;
 
-import static org.junit.Assert.assertEquals;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.core.Is.is;
+
 import org.junit.Test;
 
-public class IdentityIDMaskDiffblueTest {
-  @Test(timeout=10000)
-  public void restoreTest() {
-    // Arrange, Act and Assert
-    assertEquals(1L, (new IdentityIDMask()).restore(1L));
-  }
-}
+/**
+ * Unit tests for com.twitter.graphjet.algorithms.IdentityIDMask
+ *
+ * @author Diffblue JCover
+ */
 
+public class IdentityIDMaskDiffblueTest {
+
+    @Test(timeout=10000)
+    public void restore() {
+        assertThat(new IdentityIDMask().restore(1L), is(1L));
+        assertThat(new IdentityIDMask().restore(0L), is(0L));
+    }
+}

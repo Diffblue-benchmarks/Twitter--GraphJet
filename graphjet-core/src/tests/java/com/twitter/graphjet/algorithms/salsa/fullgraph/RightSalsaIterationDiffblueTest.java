@@ -1,21 +1,22 @@
 package com.twitter.graphjet.algorithms.salsa.fullgraph;
 
-import static org.junit.Assert.assertSame;
-import com.twitter.graphjet.algorithms.salsa.SalsaStats;
-import com.twitter.graphjet.bipartite.SmallLeftRegularBipartiteGraph;
-import com.twitter.graphjet.stats.NullStatsReceiver;
+import static org.mockito.Mockito.mock;
+
+import com.twitter.graphjet.bipartite.api.BipartiteGraph;
+
 import org.junit.Test;
 
+/**
+ * Unit tests for com.twitter.graphjet.algorithms.salsa.fullgraph.RightSalsaIteration
+ *
+ * @author Diffblue JCover
+ */
+
 public class RightSalsaIterationDiffblueTest {
-  @Test(timeout=10000)
-  public void constructorTest() {
-    // Arrange
-    SmallLeftRegularBipartiteGraph bipartiteGraph = new SmallLeftRegularBipartiteGraph(3, 1, 3, 3, 10.0, 3,
-        new NullStatsReceiver());
-    SalsaInternalState salsaInternalState = new SalsaInternalState(bipartiteGraph, new SalsaStats(), 1);
 
-    // Act and Assert
-    assertSame(salsaInternalState, (new RightSalsaIteration(salsaInternalState)).salsaInternalState);
-  }
+    @Test(timeout=10000)
+    public void runSingleIteration() {
+        BipartiteGraph bipartiteGraph = mock(BipartiteGraph.class);
+        new RightSalsaIteration(new SalsaInternalState(bipartiteGraph, new com.twitter.graphjet.algorithms.salsa.SalsaStats(), 1)).runSingleIteration();
+    }
 }
-

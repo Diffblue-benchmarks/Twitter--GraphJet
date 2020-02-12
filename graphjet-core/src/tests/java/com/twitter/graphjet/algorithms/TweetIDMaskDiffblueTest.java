@@ -1,43 +1,47 @@
 package com.twitter.graphjet.algorithms;
 
-import static org.junit.Assert.assertEquals;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.core.Is.is;
+
 import org.junit.Test;
 
+/**
+ * Unit tests for com.twitter.graphjet.algorithms.TweetIDMask
+ *
+ * @author Diffblue JCover
+ */
+
 public class TweetIDMaskDiffblueTest {
-  @Test(timeout=10000)
-  public void summaryTest() {
-    // Arrange, Act and Assert
-    assertEquals(2305843009213693953L, TweetIDMask.summary(1L));
-  }
 
-  @Test(timeout=10000)
-  public void photoTest() {
-    // Arrange, Act and Assert
-    assertEquals(4611686018427387905L, TweetIDMask.photo(1L));
-  }
+    @Test(timeout=10000)
+    public void photoTweetIsOne() {
+        assertThat(TweetIDMask.photo(1L), is(4_611_686_018_427_387_905L));
+    }
 
-  @Test(timeout=10000)
-  public void playerTest() {
-    // Arrange, Act and Assert
-    assertEquals(6917529027641081857L, TweetIDMask.player(1L));
-  }
+    @Test(timeout=10000)
+    public void playerTweetIsOne() {
+        assertThat(TweetIDMask.player(1L), is(6_917_529_027_641_081_857L));
+    }
 
-  @Test(timeout=10000)
-  public void restoreTest() {
-    // Arrange, Act and Assert
-    assertEquals(1L, (new TweetIDMask()).restore(1L));
-  }
+    @Test(timeout=10000)
+    public void promotionTweetIsOne() {
+        assertThat(TweetIDMask.promotion(1L), is(-9_223_372_036_854_775_807L));
+    }
 
-  @Test(timeout=10000)
-  public void promotionTest() {
-    // Arrange, Act and Assert
-    assertEquals(-9223372036854775807L, TweetIDMask.promotion(1L));
-  }
+    @Test(timeout=10000)
+    public void restore() {
+        assertThat(new TweetIDMask().restore(1L), is(1L));
+        assertThat(new TweetIDMask().restore(0L), is(0L));
+    }
 
-  @Test(timeout=10000)
-  public void tweetTest() {
-    // Arrange, Act and Assert
-    assertEquals(1L, TweetIDMask.tweet(1L));
-  }
+    @Test(timeout=10000)
+    public void summaryTweetIsOne() {
+        assertThat(TweetIDMask.summary(1L), is(2_305_843_009_213_693_953L));
+    }
+
+    @Test(timeout=10000)
+    public void tweet() {
+        assertThat(TweetIDMask.tweet(1L), is(1L));
+        assertThat(TweetIDMask.tweet(0L), is(0L));
+    }
 }
-

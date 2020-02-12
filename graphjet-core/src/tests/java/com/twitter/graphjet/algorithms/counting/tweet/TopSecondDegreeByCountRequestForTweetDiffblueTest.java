@@ -1,155 +1,96 @@
 package com.twitter.graphjet.algorithms.counting.tweet;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertSame;
-import com.twitter.graphjet.algorithms.RecommendationType;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.core.Is.is;
+import static org.hamcrest.core.IsSame.sameInstance;
+import static org.mockito.Mockito.mock;
+
 import com.twitter.graphjet.algorithms.filters.ResultFilterChain;
-import it.unimi.dsi.fastutil.longs.Long2DoubleAVLTreeMap;
+
 import it.unimi.dsi.fastutil.longs.Long2DoubleMap;
-import it.unimi.dsi.fastutil.longs.LongAVLTreeSet;
 import it.unimi.dsi.fastutil.longs.LongSet;
-import java.util.Arrays;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
+
 import org.junit.Test;
 
+/**
+ * Unit tests for com.twitter.graphjet.algorithms.counting.tweet.TopSecondDegreeByCountRequestForTweet
+ *
+ * @author Diffblue JCover
+ */
+
 public class TopSecondDegreeByCountRequestForTweetDiffblueTest {
-  @Test(timeout=10000)
-  public void getMinUserSocialProofSizesTest() {
-    // Arrange
-    Long2DoubleAVLTreeMap long2DoubleAVLTreeMap = new Long2DoubleAVLTreeMap();
-    long2DoubleAVLTreeMap.put(Long.valueOf(1L), Double.valueOf(10.0));
-    LongAVLTreeSet longAVLTreeSet = new LongAVLTreeSet();
-    longAVLTreeSet.add(Long.valueOf(1L));
-    byte[] byteArray = new byte[24];
-    Arrays.fill(byteArray, (byte) 1);
 
-    // Act and Assert
-    assertNull((new TopSecondDegreeByCountRequestForTweet(1L, long2DoubleAVLTreeMap, longAVLTreeSet, null, null, 3, 3,
-        3, null, byteArray, 1L, 1L, new ResultFilterChain(null), null)).getMinUserSocialProofSizes());
-  }
+    @Test(timeout=10000)
+    public void getMaxNumResultsByType() {
+        Long2DoubleMap leftSeedNodesWithWeight = mock(Long2DoubleMap.class);
+        LongSet toBeFiltered = mock(LongSet.class);
+        Map<com.twitter.graphjet.algorithms.RecommendationType, Integer> maxNumResultsByRecType = new HashMap<com.twitter.graphjet.algorithms.RecommendationType, Integer>();
+        byte[] socialProofTypes = new byte[] { 1 };
+        assertThat(new TopSecondDegreeByCountRequestForTweet(1L, leftSeedNodesWithWeight, toBeFiltered, new HashSet<com.twitter.graphjet.algorithms.RecommendationType>(), maxNumResultsByRecType, 1, 1, 1, new HashMap<com.twitter.graphjet.algorithms.RecommendationType, Integer>(), socialProofTypes, 1L, 1L, new ResultFilterChain(new ArrayList<com.twitter.graphjet.algorithms.filters.ResultFilter>()), new HashSet<byte[]>()).getMaxNumResultsByType(), sameInstance(maxNumResultsByRecType));
+    }
 
-  @Test(timeout=10000)
-  public void getMaxUserSocialProofSizeTest() {
-    // Arrange
-    Long2DoubleAVLTreeMap long2DoubleAVLTreeMap = new Long2DoubleAVLTreeMap();
-    long2DoubleAVLTreeMap.put(Long.valueOf(1L), Double.valueOf(10.0));
-    LongAVLTreeSet longAVLTreeSet = new LongAVLTreeSet();
-    longAVLTreeSet.add(Long.valueOf(1L));
-    byte[] byteArray = new byte[24];
-    Arrays.fill(byteArray, (byte) 1);
+    @Test(timeout=10000)
+    public void getMaxTweetSocialProofSizeReturnsOne() {
+        Long2DoubleMap leftSeedNodesWithWeight = mock(Long2DoubleMap.class);
+        LongSet toBeFiltered = mock(LongSet.class);
+        byte[] socialProofTypes = new byte[] { 1 };
+        assertThat(new TopSecondDegreeByCountRequestForTweet(0L, leftSeedNodesWithWeight, toBeFiltered, new HashSet<com.twitter.graphjet.algorithms.RecommendationType>(), new HashMap<com.twitter.graphjet.algorithms.RecommendationType, Integer>(), 1, 1, 1, new HashMap<com.twitter.graphjet.algorithms.RecommendationType, Integer>(), socialProofTypes, 1L, 1L, new ResultFilterChain(new ArrayList<com.twitter.graphjet.algorithms.filters.ResultFilter>()), new HashSet<byte[]>()).getMaxTweetSocialProofSize(), is(1));
+    }
 
-    // Act and Assert
-    assertEquals(3, (new TopSecondDegreeByCountRequestForTweet(1L, long2DoubleAVLTreeMap, longAVLTreeSet, null, null, 3,
-        3, 3, null, byteArray, 1L, 1L, new ResultFilterChain(null), null)).getMaxUserSocialProofSize());
-  }
+    @Test(timeout=10000)
+    public void getMaxTweetSocialProofSizeReturnsZero() {
+        Long2DoubleMap leftSeedNodesWithWeight = mock(Long2DoubleMap.class);
+        LongSet toBeFiltered = mock(LongSet.class);
+        byte[] socialProofTypes = new byte[] { 1 };
+        assertThat(new TopSecondDegreeByCountRequestForTweet(1L, leftSeedNodesWithWeight, toBeFiltered, new HashSet<com.twitter.graphjet.algorithms.RecommendationType>(), new HashMap<com.twitter.graphjet.algorithms.RecommendationType, Integer>(), 1, 1, 0, new HashMap<com.twitter.graphjet.algorithms.RecommendationType, Integer>(), socialProofTypes, 1L, 1L, new ResultFilterChain(new ArrayList<com.twitter.graphjet.algorithms.filters.ResultFilter>()), new HashSet<byte[]>()).getMaxTweetSocialProofSize(), is(0));
+    }
 
-  @Test(timeout=10000)
-  public void constructorTest() {
-    // Arrange
-    Long2DoubleAVLTreeMap long2DoubleAVLTreeMap = new Long2DoubleAVLTreeMap();
-    long2DoubleAVLTreeMap.put(Long.valueOf(1L), Double.valueOf(10.0));
-    LongAVLTreeSet longAVLTreeSet = new LongAVLTreeSet();
-    longAVLTreeSet.add(Long.valueOf(1L));
-    byte[] byteArray = new byte[24];
-    Arrays.fill(byteArray, (byte) 1);
+    @Test(timeout=10000)
+    public void getMaxUserSocialProofSizeReturnsOne() {
+        Long2DoubleMap leftSeedNodesWithWeight = mock(Long2DoubleMap.class);
+        LongSet toBeFiltered = mock(LongSet.class);
+        byte[] socialProofTypes = new byte[] { 1 };
+        assertThat(new TopSecondDegreeByCountRequestForTweet(0L, leftSeedNodesWithWeight, toBeFiltered, new HashSet<com.twitter.graphjet.algorithms.RecommendationType>(), new HashMap<com.twitter.graphjet.algorithms.RecommendationType, Integer>(), 1, 1, 1, new HashMap<com.twitter.graphjet.algorithms.RecommendationType, Integer>(), socialProofTypes, 1L, 1L, new ResultFilterChain(new ArrayList<com.twitter.graphjet.algorithms.filters.ResultFilter>()), new HashSet<byte[]>()).getMaxUserSocialProofSize(), is(1));
+    }
 
-    // Act
-    TopSecondDegreeByCountRequestForTweet actualTopSecondDegreeByCountRequestForTweet = new TopSecondDegreeByCountRequestForTweet(
-        1L, long2DoubleAVLTreeMap, longAVLTreeSet, null, null, 3, 3, 3, null, byteArray, 1L, 1L,
-        new ResultFilterChain(null), null);
+    @Test(timeout=10000)
+    public void getMaxUserSocialProofSizeReturnsZero() {
+        Long2DoubleMap leftSeedNodesWithWeight = mock(Long2DoubleMap.class);
+        LongSet toBeFiltered = mock(LongSet.class);
+        byte[] socialProofTypes = new byte[] { 1 };
+        assertThat(new TopSecondDegreeByCountRequestForTweet(1L, leftSeedNodesWithWeight, toBeFiltered, new HashSet<com.twitter.graphjet.algorithms.RecommendationType>(), new HashMap<com.twitter.graphjet.algorithms.RecommendationType, Integer>(), 1, 0, 1, new HashMap<com.twitter.graphjet.algorithms.RecommendationType, Integer>(), socialProofTypes, 1L, 1L, new ResultFilterChain(new ArrayList<com.twitter.graphjet.algorithms.filters.ResultFilter>()), new HashSet<byte[]>()).getMaxUserSocialProofSize(), is(0));
+    }
 
-    // Assert
-    long actualMaxRightNodeAgeInMillis = actualTopSecondDegreeByCountRequestForTweet.getMaxRightNodeAgeInMillis();
-    Set<byte[]> actualSocialProofTypeUnions = actualTopSecondDegreeByCountRequestForTweet.getSocialProofTypeUnions();
-    Set<RecommendationType> actualRecommendationTypes = actualTopSecondDegreeByCountRequestForTweet
-        .getRecommendationTypes();
-    int actualMaxUserSocialProofSize = actualTopSecondDegreeByCountRequestForTweet.getMaxUserSocialProofSize();
-    long actualMaxEdgeAgeInMillis = actualTopSecondDegreeByCountRequestForTweet.getMaxEdgeAgeInMillis();
-    Long2DoubleMap actualLeftSeedNodesWithWeight = actualTopSecondDegreeByCountRequestForTweet
-        .getLeftSeedNodesWithWeight();
-    Map<RecommendationType, Integer> actualMaxNumResultsByType = actualTopSecondDegreeByCountRequestForTweet
-        .getMaxNumResultsByType();
-    int actualMaxSocialProofTypeSize = actualTopSecondDegreeByCountRequestForTweet.getMaxSocialProofTypeSize();
-    LongSet actualToBeFiltered = actualTopSecondDegreeByCountRequestForTweet.getToBeFiltered();
-    int actualMaxTweetSocialProofSize = actualTopSecondDegreeByCountRequestForTweet.getMaxTweetSocialProofSize();
-    byte[] socialProofTypes = actualTopSecondDegreeByCountRequestForTweet.getSocialProofTypes();
-    Map<RecommendationType, Integer> actualMinUserSocialProofSizes = actualTopSecondDegreeByCountRequestForTweet
-        .getMinUserSocialProofSizes();
-    assertEquals(1L, actualMaxRightNodeAgeInMillis);
-    assertEquals(1L, actualTopSecondDegreeByCountRequestForTweet.getQueryNode());
-    assertNull(actualMinUserSocialProofSizes);
-    assertEquals(24, socialProofTypes.length);
-    assertEquals(3, actualMaxTweetSocialProofSize);
-    assertSame(longAVLTreeSet, actualToBeFiltered);
-    assertEquals(3, actualMaxSocialProofTypeSize);
-    assertNull(actualMaxNumResultsByType);
-    assertSame(long2DoubleAVLTreeMap, actualLeftSeedNodesWithWeight);
-    assertEquals(1L, actualMaxEdgeAgeInMillis);
-    assertEquals(3, actualMaxUserSocialProofSize);
-    assertNull(actualRecommendationTypes);
-    assertNull(actualSocialProofTypeUnions);
-  }
+    @Test(timeout=10000)
+    public void getMinUserSocialProofSizes() {
+        Long2DoubleMap leftSeedNodesWithWeight = mock(Long2DoubleMap.class);
+        LongSet toBeFiltered = mock(LongSet.class);
+        Map<com.twitter.graphjet.algorithms.RecommendationType, Integer> minUserSocialProofSizes = new HashMap<com.twitter.graphjet.algorithms.RecommendationType, Integer>();
+        byte[] socialProofTypes = new byte[] { 1 };
+        assertThat(new TopSecondDegreeByCountRequestForTweet(1L, leftSeedNodesWithWeight, toBeFiltered, new HashSet<com.twitter.graphjet.algorithms.RecommendationType>(), new HashMap<com.twitter.graphjet.algorithms.RecommendationType, Integer>(), 1, 1, 1, minUserSocialProofSizes, socialProofTypes, 1L, 1L, new ResultFilterChain(new ArrayList<com.twitter.graphjet.algorithms.filters.ResultFilter>()), new HashSet<byte[]>()).getMinUserSocialProofSizes(), sameInstance(minUserSocialProofSizes));
+    }
 
-  @Test(timeout=10000)
-  public void getRecommendationTypesTest() {
-    // Arrange
-    Long2DoubleAVLTreeMap long2DoubleAVLTreeMap = new Long2DoubleAVLTreeMap();
-    long2DoubleAVLTreeMap.put(Long.valueOf(1L), Double.valueOf(10.0));
-    LongAVLTreeSet longAVLTreeSet = new LongAVLTreeSet();
-    longAVLTreeSet.add(Long.valueOf(1L));
-    byte[] byteArray = new byte[24];
-    Arrays.fill(byteArray, (byte) 1);
+    @Test(timeout=10000)
+    public void getRecommendationTypes() {
+        Long2DoubleMap leftSeedNodesWithWeight = mock(Long2DoubleMap.class);
+        LongSet toBeFiltered = mock(LongSet.class);
+        Set<com.twitter.graphjet.algorithms.RecommendationType> recommendationTypes = new HashSet<com.twitter.graphjet.algorithms.RecommendationType>();
+        byte[] socialProofTypes = new byte[] { 1 };
+        assertThat(new TopSecondDegreeByCountRequestForTweet(1L, leftSeedNodesWithWeight, toBeFiltered, recommendationTypes, new HashMap<com.twitter.graphjet.algorithms.RecommendationType, Integer>(), 1, 1, 1, new HashMap<com.twitter.graphjet.algorithms.RecommendationType, Integer>(), socialProofTypes, 1L, 1L, new ResultFilterChain(new ArrayList<com.twitter.graphjet.algorithms.filters.ResultFilter>()), new HashSet<byte[]>()).getRecommendationTypes(), sameInstance(recommendationTypes));
+    }
 
-    // Act and Assert
-    assertNull((new TopSecondDegreeByCountRequestForTweet(1L, long2DoubleAVLTreeMap, longAVLTreeSet, null, null, 3, 3,
-        3, null, byteArray, 1L, 1L, new ResultFilterChain(null), null)).getRecommendationTypes());
-  }
-
-  @Test(timeout=10000)
-  public void getMaxTweetSocialProofSizeTest() {
-    // Arrange
-    Long2DoubleAVLTreeMap long2DoubleAVLTreeMap = new Long2DoubleAVLTreeMap();
-    long2DoubleAVLTreeMap.put(Long.valueOf(1L), Double.valueOf(10.0));
-    LongAVLTreeSet longAVLTreeSet = new LongAVLTreeSet();
-    longAVLTreeSet.add(Long.valueOf(1L));
-    byte[] byteArray = new byte[24];
-    Arrays.fill(byteArray, (byte) 1);
-
-    // Act and Assert
-    assertEquals(3, (new TopSecondDegreeByCountRequestForTweet(1L, long2DoubleAVLTreeMap, longAVLTreeSet, null, null, 3,
-        3, 3, null, byteArray, 1L, 1L, new ResultFilterChain(null), null)).getMaxTweetSocialProofSize());
-  }
-
-  @Test(timeout=10000)
-  public void getSocialProofTypeUnionsTest() {
-    // Arrange
-    Long2DoubleAVLTreeMap long2DoubleAVLTreeMap = new Long2DoubleAVLTreeMap();
-    long2DoubleAVLTreeMap.put(Long.valueOf(1L), Double.valueOf(10.0));
-    LongAVLTreeSet longAVLTreeSet = new LongAVLTreeSet();
-    longAVLTreeSet.add(Long.valueOf(1L));
-    byte[] byteArray = new byte[24];
-    Arrays.fill(byteArray, (byte) 1);
-
-    // Act and Assert
-    assertNull((new TopSecondDegreeByCountRequestForTweet(1L, long2DoubleAVLTreeMap, longAVLTreeSet, null, null, 3, 3,
-        3, null, byteArray, 1L, 1L, new ResultFilterChain(null), null)).getSocialProofTypeUnions());
-  }
-
-  @Test(timeout=10000)
-  public void getMaxNumResultsByTypeTest() {
-    // Arrange
-    Long2DoubleAVLTreeMap long2DoubleAVLTreeMap = new Long2DoubleAVLTreeMap();
-    long2DoubleAVLTreeMap.put(Long.valueOf(1L), Double.valueOf(10.0));
-    LongAVLTreeSet longAVLTreeSet = new LongAVLTreeSet();
-    longAVLTreeSet.add(Long.valueOf(1L));
-    byte[] byteArray = new byte[24];
-    Arrays.fill(byteArray, (byte) 1);
-
-    // Act and Assert
-    assertNull((new TopSecondDegreeByCountRequestForTweet(1L, long2DoubleAVLTreeMap, longAVLTreeSet, null, null, 3, 3,
-        3, null, byteArray, 1L, 1L, new ResultFilterChain(null), null)).getMaxNumResultsByType());
-  }
+    @Test(timeout=10000)
+    public void getSocialProofTypeUnions() {
+        Long2DoubleMap leftSeedNodesWithWeight = mock(Long2DoubleMap.class);
+        LongSet toBeFiltered = mock(LongSet.class);
+        byte[] socialProofTypes = new byte[] { 1 };
+        Set<byte[]> socialProofTypeUnions = new HashSet<byte[]>();
+        assertThat(new TopSecondDegreeByCountRequestForTweet(1L, leftSeedNodesWithWeight, toBeFiltered, new HashSet<com.twitter.graphjet.algorithms.RecommendationType>(), new HashMap<com.twitter.graphjet.algorithms.RecommendationType, Integer>(), 1, 1, 1, new HashMap<com.twitter.graphjet.algorithms.RecommendationType, Integer>(), socialProofTypes, 1L, 1L, new ResultFilterChain(new ArrayList<com.twitter.graphjet.algorithms.filters.ResultFilter>()), socialProofTypeUnions).getSocialProofTypeUnions(), sameInstance(socialProofTypeUnions));
+    }
 }
-

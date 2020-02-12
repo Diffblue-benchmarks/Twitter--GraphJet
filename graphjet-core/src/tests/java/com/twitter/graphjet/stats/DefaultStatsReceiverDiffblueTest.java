@@ -1,26 +1,26 @@
 package com.twitter.graphjet.stats;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.core.Is.is;
+
 import org.junit.Test;
 
+/**
+ * Unit tests for com.twitter.graphjet.stats.DefaultStatsReceiver
+ *
+ * @author Diffblue JCover
+ */
+
 public class DefaultStatsReceiverDiffblueTest {
-  @Test(timeout=10000)
-  public void counterTest() {
-    // Arrange, Act and Assert
-    assertEquals(0L, (new DefaultStatsReceiver("name")).counter("name").getCount());
-  }
 
-  @Test(timeout=10000)
-  public void scopeTest() {
-    // Arrange, Act and Assert
-    assertTrue((new DefaultStatsReceiver("name")).scope("foo") instanceof DefaultStatsReceiver);
-  }
+    @Test(timeout=10000)
+    public void getCount() {
+        assertThat(new DefaultStatsReceiver("/bin/bash").counter("/bin/bash").getCount(), is(0L));
+        assertThat(DefaultStatsReceiver.getCount("1"), is(0L));
+    }
 
-  @Test(timeout=10000)
-  public void getCountTest() {
-    // Arrange, Act and Assert
-    assertEquals(0L, DefaultStatsReceiver.getCount("name"));
-  }
+    @Test(timeout=10000)
+    public void scope() {
+        // pojo StatsReceiver
+    }
 }
-

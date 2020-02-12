@@ -1,82 +1,61 @@
 package com.twitter.graphjet.hashing;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.core.Is.is;
+import static org.junit.Assert.assertArrayEquals;
+
 import org.junit.Test;
 
+/**
+ * Unit tests for com.twitter.graphjet.hashing.SmallArrayBasedLongToDoubleMap
+ *
+ * @author Diffblue JCover
+ */
+
 public class SmallArrayBasedLongToDoubleMapDiffblueTest {
-  @Test(timeout=10000)
-  public void sizeTest() {
-    // Arrange, Act and Assert
-    assertEquals(0, (new SmallArrayBasedLongToDoubleMap()).size());
-  }
 
-  @Test(timeout=10000)
-  public void keysTest() {
-    // Arrange, Act and Assert
-    assertEquals(4, (new SmallArrayBasedLongToDoubleMap()).keys().length);
-  }
+    @Test(timeout=10000)
+    public void containsKeyIsOneReturnsFalse() {
+        assertThat(new SmallArrayBasedLongToDoubleMap().contains(1L), is(false));
+    }
 
-  @Test(timeout=10000)
-  public void trimTest() {
-    // Arrange
-    SmallArrayBasedLongToDoubleMap smallArrayBasedLongToDoubleMap = new SmallArrayBasedLongToDoubleMap();
+    @Test(timeout=10000)
+    public void keysReturnsAllZero() {
+        assertArrayEquals(new long[] { 0L, 0L, 0L, 0L }, new SmallArrayBasedLongToDoubleMap().keys());
+    }
 
-    // Act and Assert
-    assertTrue(smallArrayBasedLongToDoubleMap.trim(1));
-    long[] metadataResult = smallArrayBasedLongToDoubleMap.metadata();
-    long[] keysResult = smallArrayBasedLongToDoubleMap.keys();
-    assertEquals(0, metadataResult.length);
-    assertEquals(0, smallArrayBasedLongToDoubleMap.size());
-    assertEquals(0, keysResult.length);
-  }
+    @Test(timeout=10000)
+    public void metadataReturnsAllZero() {
+        assertArrayEquals(new long[] { 0L, 0L, 0L, 0L }, new SmallArrayBasedLongToDoubleMap().metadata());
+    }
 
-  @Test(timeout=10000)
-  public void valuesTest() {
-    // Arrange, Act and Assert
-    assertEquals(4, (new SmallArrayBasedLongToDoubleMap()).values().length);
-  }
+    @Test(timeout=10000)
+    public void putKeyIsZeroAndMetadataIsOneAndValueIsOneReturnsTrue() {
+        assertThat(new SmallArrayBasedLongToDoubleMap().put(0L, 1.0, 1L), is(true));
+    }
 
-  @Test(timeout=10000)
-  public void metadataTest() {
-    // Arrange, Act and Assert
-    assertEquals(4, (new SmallArrayBasedLongToDoubleMap()).metadata().length);
-  }
+    @Test(timeout=10000)
+    public void sizeReturnsZero() {
+        assertThat(new SmallArrayBasedLongToDoubleMap().size(), is(0));
+    }
 
-  @Test(timeout=10000)
-  public void constructorTest() {
-    // Arrange and Act
-    SmallArrayBasedLongToDoubleMap actualSmallArrayBasedLongToDoubleMap = new SmallArrayBasedLongToDoubleMap();
+    @Test(timeout=10000)
+    public void sort() {
+        new SmallArrayBasedLongToDoubleMap().sort();
+    }
 
-    // Assert
-    long[] metadataResult = actualSmallArrayBasedLongToDoubleMap.metadata();
-    long[] keysResult = actualSmallArrayBasedLongToDoubleMap.keys();
-    assertEquals(4, metadataResult.length);
-    assertEquals(0, actualSmallArrayBasedLongToDoubleMap.size());
-    assertEquals(4, keysResult.length);
-  }
+    @Test(timeout=10000)
+    public void trimInputCapacityIsOneReturnsTrue() {
+        assertThat(new SmallArrayBasedLongToDoubleMap().trim(1), is(true));
+    }
 
-  @Test(timeout=10000)
-  public void putTest() {
-    // Arrange
-    SmallArrayBasedLongToDoubleMap smallArrayBasedLongToDoubleMap = new SmallArrayBasedLongToDoubleMap();
+    @Test(timeout=10000)
+    public void uniqueKeysSizeReturnsZero() {
+        assertThat(new SmallArrayBasedLongToDoubleMap().uniqueKeysSize(), is(0));
+    }
 
-    // Act and Assert
-    assertTrue(smallArrayBasedLongToDoubleMap.put(1L, 10.0, 1L));
-    assertEquals(1, smallArrayBasedLongToDoubleMap.size());
-  }
-
-  @Test(timeout=10000)
-  public void uniqueKeysSizeTest() {
-    // Arrange, Act and Assert
-    assertEquals(0, (new SmallArrayBasedLongToDoubleMap()).uniqueKeysSize());
-  }
-
-  @Test(timeout=10000)
-  public void containsTest() {
-    // Arrange, Act and Assert
-    assertFalse((new SmallArrayBasedLongToDoubleMap()).contains(1L));
-  }
+    @Test(timeout=10000)
+    public void valuesReturnsAllZero() {
+        assertArrayEquals(new double[] { 0.0, 0.0, 0.0, 0.0 }, new SmallArrayBasedLongToDoubleMap().values(), 0);
+    }
 }
-

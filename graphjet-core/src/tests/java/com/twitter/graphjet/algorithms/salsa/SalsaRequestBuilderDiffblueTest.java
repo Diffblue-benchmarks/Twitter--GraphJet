@@ -1,148 +1,118 @@
 package com.twitter.graphjet.algorithms.salsa;
 
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.core.Is.is;
+import static org.hamcrest.core.IsSame.sameInstance;
+import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertTrue;
-import it.unimi.dsi.fastutil.longs.Long2DoubleAVLTreeMap;
+import static org.mockito.Mockito.mock;
+
+import com.twitter.graphjet.algorithms.filters.ResultFilterChain;
+
 import it.unimi.dsi.fastutil.longs.Long2DoubleMap;
-import it.unimi.dsi.fastutil.longs.LongAVLTreeSet;
 import it.unimi.dsi.fastutil.longs.LongSet;
-import org.junit.Rule;
+
+import java.util.ArrayList;
+
 import org.junit.Test;
-import org.junit.rules.ExpectedException;
+
+/**
+ * Unit tests for com.twitter.graphjet.algorithms.salsa.SalsaRequestBuilder
+ *
+ * @author Diffblue JCover
+ */
 
 public class SalsaRequestBuilderDiffblueTest {
-  @Rule
-  public ExpectedException thrown = ExpectedException.none();
 
-  @Test(timeout=10000)
-  public void withMaxSocialProofTypeSizeTest() {
-    // Arrange
-    SalsaRequestBuilder salsaRequestBuilder = new SalsaRequestBuilder(1L);
+    @Test(timeout=10000)
+    public void build() {
+        SalsaRequest result = new SalsaRequestBuilder(1L).build();
+        assertEquals(1.0, result.getLeftSeedNodesWithWeight().get(1L), 0);
+        assertThat(result.getMaxNumResults(), is(10));
+        assertThat(result.getMaxRandomWalkLength(), is(1));
+        assertThat(result.getMaxSocialProofSize(), is(0));
+        assertThat(result.getMaxSocialProofTypeSize(), is(1));
+        assertThat(result.getNumRandomWalks(), is(1));
+        assertEquals(0.9, result.getQueryNodeWeightFraction(), 0);
+        assertEquals(0.3, result.getResetProbability(), 0);
+        assertThat(result.getQueryNode(), is(1L));
+        assertArrayEquals(new byte[] { 0 }, result.getSocialProofTypes());
+        assertTrue(result.getToBeFiltered().isEmpty());
+    }
 
-    // Act and Assert
-    assertSame(salsaRequestBuilder, salsaRequestBuilder.withMaxSocialProofTypeSize(3));
-  }
+    @Test(timeout=10000)
+    public void removeNegativeNodesInputRemoveNegativeNodesIsFalse() {
+        SalsaRequestBuilder salsaRequestBuilder = new SalsaRequestBuilder(1L);
+        assertThat(salsaRequestBuilder.removeNegativeNodes(false), sameInstance(salsaRequestBuilder));
+    }
 
-  @Test(timeout=10000)
-  public void removeNegativeNodesTest() {
-    // Arrange
-    SalsaRequestBuilder salsaRequestBuilder = new SalsaRequestBuilder(1L);
+    @Test(timeout=10000)
+    public void withLeftSeedNodes() {
+        SalsaRequestBuilder salsaRequestBuilder = new SalsaRequestBuilder(1L);
+        Long2DoubleMap inputLeftSeedNodes = mock(Long2DoubleMap.class);
+        assertThat(salsaRequestBuilder.withLeftSeedNodes(inputLeftSeedNodes), sameInstance(salsaRequestBuilder));
+    }
 
-    // Act and Assert
-    assertSame(salsaRequestBuilder, salsaRequestBuilder.removeNegativeNodes(true));
-  }
+    @Test(timeout=10000)
+    public void withMaxNumResultsInputMaxNumResultsIsOne() {
+        SalsaRequestBuilder salsaRequestBuilder = new SalsaRequestBuilder(1L);
+        assertThat(salsaRequestBuilder.withMaxNumResults(1), sameInstance(salsaRequestBuilder));
+    }
 
-  @Test(timeout=10000)
-  public void withLeftSeedNodesTest() {
-    // Arrange
-    SalsaRequestBuilder salsaRequestBuilder = new SalsaRequestBuilder(1L);
-    Long2DoubleAVLTreeMap long2DoubleAVLTreeMap = new Long2DoubleAVLTreeMap();
-    long2DoubleAVLTreeMap.put(Long.valueOf(1L), Double.valueOf(10.0));
+    @Test(timeout=10000)
+    public void withMaxRandomWalkLengthInputMaxRandomWalkLengthIsOne() {
+        SalsaRequestBuilder salsaRequestBuilder = new SalsaRequestBuilder(1L);
+        assertThat(salsaRequestBuilder.withMaxRandomWalkLength(1), sameInstance(salsaRequestBuilder));
+    }
 
-    // Act and Assert
-    assertSame(salsaRequestBuilder, salsaRequestBuilder.withLeftSeedNodes(long2DoubleAVLTreeMap));
-  }
+    @Test(timeout=10000)
+    public void withMaxSocialProofSizeInputMaxSocialProofSizeIsOne() {
+        SalsaRequestBuilder salsaRequestBuilder = new SalsaRequestBuilder(1L);
+        assertThat(salsaRequestBuilder.withMaxSocialProofSize(1), sameInstance(salsaRequestBuilder));
+    }
 
-  @Test(timeout=10000)
-  public void withNumRandomWalksTest() {
-    // Arrange
-    SalsaRequestBuilder salsaRequestBuilder = new SalsaRequestBuilder(1L);
+    @Test(timeout=10000)
+    public void withMaxSocialProofTypeSizeInputMaxSocialProofTypeSizeIsOne() {
+        SalsaRequestBuilder salsaRequestBuilder = new SalsaRequestBuilder(1L);
+        assertThat(salsaRequestBuilder.withMaxSocialProofTypeSize(1), sameInstance(salsaRequestBuilder));
+    }
 
-    // Act and Assert
-    assertSame(salsaRequestBuilder, salsaRequestBuilder.withNumRandomWalks(10));
-  }
+    @Test(timeout=10000)
+    public void withNumRandomWalksInputNumRandomWalksIsOne() {
+        SalsaRequestBuilder salsaRequestBuilder = new SalsaRequestBuilder(1L);
+        assertThat(salsaRequestBuilder.withNumRandomWalks(1), sameInstance(salsaRequestBuilder));
+    }
 
-  @Test(timeout=10000)
-  public void buildTest() {
-    // Arrange and Act
-    SalsaRequest actualBuildResult = (new SalsaRequestBuilder(1L)).build();
+    @Test(timeout=10000)
+    public void withQueryNodeWeightFractionInputQueryNodeWeightFractionIsOne() {
+        SalsaRequestBuilder salsaRequestBuilder = new SalsaRequestBuilder(1L);
+        assertThat(salsaRequestBuilder.withQueryNodeWeightFraction(1.0), sameInstance(salsaRequestBuilder));
+    }
 
-    // Assert
-    Long2DoubleMap leftSeedNodesWithWeight = actualBuildResult.getLeftSeedNodesWithWeight();
-    int actualNumRandomWalks = actualBuildResult.getNumRandomWalks();
-    int actualMaxNumResults = actualBuildResult.getMaxNumResults();
-    int actualMaxSocialProofTypeSize = actualBuildResult.getMaxSocialProofTypeSize();
-    LongSet toBeFiltered = actualBuildResult.getToBeFiltered();
-    int actualMaxRandomWalkLength = actualBuildResult.getMaxRandomWalkLength();
-    double actualQueryNodeWeightFraction = actualBuildResult.getQueryNodeWeightFraction();
-    byte[] socialProofTypes = actualBuildResult.getSocialProofTypes();
-    double actualResetProbability = actualBuildResult.getResetProbability();
-    int actualMaxSocialProofSize = actualBuildResult.getMaxSocialProofSize();
-    assertTrue(leftSeedNodesWithWeight instanceof it.unimi.dsi.fastutil.longs.Long2DoubleOpenHashMap);
-    assertEquals(1L, actualBuildResult.getQueryNode());
-    assertEquals(0, actualMaxSocialProofSize);
-    assertEquals(0.3, actualResetProbability, 0.0);
-    assertEquals(1, socialProofTypes.length);
-    assertEquals(0.9, actualQueryNodeWeightFraction, 0.0);
-    assertEquals(1, actualMaxRandomWalkLength);
-    assertTrue(toBeFiltered instanceof it.unimi.dsi.fastutil.longs.LongOpenHashSet);
-    assertEquals(1, actualMaxSocialProofTypeSize);
-    assertEquals(10, actualMaxNumResults);
-    assertEquals(1, actualNumRandomWalks);
-  }
+    @Test(timeout=10000)
+    public void withResetProbabilityInputResetProbabilityIsOne() {
+        SalsaRequestBuilder salsaRequestBuilder = new SalsaRequestBuilder(1L);
+        assertThat(salsaRequestBuilder.withResetProbability(1.0), sameInstance(salsaRequestBuilder));
+    }
 
-  @Test(timeout=10000)
-  public void withToBeFilteredTest() {
-    // Arrange
-    SalsaRequestBuilder salsaRequestBuilder = new SalsaRequestBuilder(1L);
-    LongAVLTreeSet longAVLTreeSet = new LongAVLTreeSet();
-    longAVLTreeSet.add(Long.valueOf(1L));
+    @Test(timeout=10000)
+    public void withResultFilterChain() {
+        SalsaRequestBuilder salsaRequestBuilder = new SalsaRequestBuilder(1L);
+        assertThat(salsaRequestBuilder.withResultFilterChain(new ResultFilterChain(new ArrayList<com.twitter.graphjet.algorithms.filters.ResultFilter>())), sameInstance(salsaRequestBuilder));
+    }
 
-    // Act and Assert
-    assertSame(salsaRequestBuilder, salsaRequestBuilder.withToBeFiltered(longAVLTreeSet));
-  }
+    @Test(timeout=10000)
+    public void withToBeFiltered() {
+        SalsaRequestBuilder salsaRequestBuilder = new SalsaRequestBuilder(1L);
+        LongSet inputToBeFiltered = mock(LongSet.class);
+        assertThat(salsaRequestBuilder.withToBeFiltered(inputToBeFiltered), sameInstance(salsaRequestBuilder));
+    }
 
-  @Test(timeout=10000)
-  public void withMaxNumResultsTest() {
-    // Arrange
-    SalsaRequestBuilder salsaRequestBuilder = new SalsaRequestBuilder(1L);
-
-    // Act and Assert
-    assertSame(salsaRequestBuilder, salsaRequestBuilder.withMaxNumResults(10));
-  }
-
-  @Test(timeout=10000)
-  public void withMaxSocialProofSizeTest() {
-    // Arrange
-    SalsaRequestBuilder salsaRequestBuilder = new SalsaRequestBuilder(1L);
-
-    // Act and Assert
-    assertSame(salsaRequestBuilder, salsaRequestBuilder.withMaxSocialProofSize(3));
-  }
-
-  @Test(timeout=10000)
-  public void withMaxRandomWalkLengthTest2() {
-    // Arrange
-    SalsaRequestBuilder salsaRequestBuilder = new SalsaRequestBuilder(1L);
-
-    // Act and Assert
-    assertSame(salsaRequestBuilder, salsaRequestBuilder.withMaxRandomWalkLength(3));
-  }
-
-  @Test(timeout=10000)
-  public void withMaxRandomWalkLengthTest() {
-    // Arrange, Act and Assert
-    thrown.expect(IllegalArgumentException.class);
-    (new SalsaRequestBuilder(1L)).withMaxRandomWalkLength(2);
-  }
-
-  @Test(timeout=10000)
-  public void withQueryNodeWeightFractionTest() {
-    // Arrange
-    SalsaRequestBuilder salsaRequestBuilder = new SalsaRequestBuilder(1L);
-
-    // Act and Assert
-    assertSame(salsaRequestBuilder, salsaRequestBuilder.withQueryNodeWeightFraction(10.0));
-  }
-
-  @Test(timeout=10000)
-  public void withResetProbabilityTest() {
-    // Arrange
-    SalsaRequestBuilder salsaRequestBuilder = new SalsaRequestBuilder(1L);
-
-    // Act and Assert
-    assertSame(salsaRequestBuilder, salsaRequestBuilder.withResetProbability(0.25));
-  }
+    @Test(timeout=10000)
+    public void withValidSocialProofTypesInputValidSocialProofTypesIsOne() {
+        SalsaRequestBuilder salsaRequestBuilder = new SalsaRequestBuilder(1L);
+        byte[] inputValidSocialProofTypes = new byte[] { 1 };
+        assertThat(salsaRequestBuilder.withValidSocialProofTypes(inputValidSocialProofTypes), sameInstance(salsaRequestBuilder));
+    }
 }
-

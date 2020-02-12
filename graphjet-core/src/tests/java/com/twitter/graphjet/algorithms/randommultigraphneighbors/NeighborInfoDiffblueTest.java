@@ -1,60 +1,45 @@
 package com.twitter.graphjet.algorithms.randommultigraphneighbors;
 
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
+
 import org.junit.Test;
 
+/**
+ * Unit tests for com.twitter.graphjet.algorithms.randommultigraphneighbors.NeighborInfo
+ *
+ * @author Diffblue JCover
+ */
+
 public class NeighborInfoDiffblueTest {
-  @Test(timeout=10000)
-  public void equalsTest() {
-    // Arrange, Act and Assert
-    assertFalse((new NeighborInfo(1L, 10.0, 1)).equals("foo"));
-  }
 
-  @Test(timeout=10000)
-  public void getNeighborNodeTest() {
-    // Arrange, Act and Assert
-    assertEquals(1L, (new NeighborInfo(1L, 10.0, 1)).getNeighborNode());
-  }
+    @Test(timeout=10000)
+    public void compareTo() {
+        assertThat(new NeighborInfo(0L, Double.NaN, 0).compareTo(new NeighborInfo(1L, 1.0, 1)), is(1));
+        assertThat(new NeighborInfo(0L, 1.0, 0).compareTo(new NeighborInfo(1L, 1.0, 1)), is(0));
+    }
 
-  @Test(timeout=10000)
-  public void hashCodeTest() {
-    // Arrange, Act and Assert
-    assertEquals(-1000572895, (new NeighborInfo(1L, 10.0, 1)).hashCode());
-  }
+    @Test(timeout=10000)
+    public void getDegree() {
+        assertThat(new NeighborInfo(1L, 1.0, 1).getDegree(), is(1));
+        assertThat(new NeighborInfo(1L, 1.0, 0).getDegree(), is(0));
+    }
 
-  @Test(timeout=10000)
-  public void compareToTest() {
-    // Arrange
-    NeighborInfo neighborInfo = new NeighborInfo(1L, 10.0, 1);
+    @Test(timeout=10000)
+    public void getNeighborNode() {
+        assertThat(new NeighborInfo(1L, 1.0, 1).getNeighborNode(), is(1L));
+        assertThat(new NeighborInfo(0L, 1.0, 1).getNeighborNode(), is(0L));
+    }
 
-    // Act and Assert
-    assertEquals(0, neighborInfo.compareTo(new NeighborInfo(1L, 10.0, 1)));
-  }
+    @Test(timeout=10000)
+    public void getScoreReturnsOne() {
+        assertEquals(1.0, new NeighborInfo(1L, 1.0, 1).getScore(), 0);
+    }
 
-  @Test(timeout=10000)
-  public void constructorTest() {
-    // Arrange and Act
-    NeighborInfo actualNeighborInfo = new NeighborInfo(1L, 10.0, 1);
-
-    // Assert
-    int actualDegree = actualNeighborInfo.getDegree();
-    double actualScore = actualNeighborInfo.getScore();
-    assertEquals(1, actualDegree);
-    assertEquals(1L, actualNeighborInfo.getNeighborNode());
-    assertEquals(10.0, actualScore, 0.0);
-  }
-
-  @Test(timeout=10000)
-  public void getScoreTest() {
-    // Arrange, Act and Assert
-    assertEquals(10.0, (new NeighborInfo(1L, 10.0, 1)).getScore(), 0.0);
-  }
-
-  @Test(timeout=10000)
-  public void getDegreeTest() {
-    // Arrange, Act and Assert
-    assertEquals(1, (new NeighborInfo(1L, 10.0, 1)).getDegree());
-  }
+    @Test(timeout=10000)
+    public void testequals() {
+        assertThat(new NeighborInfo(1L, 1.0, 1).equals("foo"), is(false));
+        assertThat(new NeighborInfo(1L, 1.0, 1).equals(null), is(false));
+    }
 }
-

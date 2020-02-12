@@ -1,238 +1,133 @@
 package com.twitter.graphjet.algorithms;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.core.Is.is;
+
 import org.junit.Test;
 
+/**
+ * Unit tests for com.twitter.graphjet.algorithms.RecommendationStats
+ *
+ * @author Diffblue JCover
+ */
+
 public class RecommendationStatsDiffblueTest {
-  @Test(timeout=10000)
-  public void setMinVisitsPerRightNodeTest() {
-    // Arrange
-    RecommendationStats recommendationStats = new RecommendationStats();
 
-    // Act
-    recommendationStats.setMinVisitsPerRightNode(1);
+    @Test(timeout=10000)
+    public void addToNumRHSVisitsNumVisitsIsOne() {
+        RecommendationStats recommendationStats = new RecommendationStats();
+        recommendationStats.addToNumRHSVisits(1);
+        assertThat(recommendationStats.getNumRHSVisits(), is(1));
+    }
 
-    // Assert
-    assertEquals(1, recommendationStats.getMinVisitsPerRightNode());
-  }
+    @Test(timeout=10000)
+    public void getMaxVisitsPerRightNode() {
+        assertThat(new RecommendationStats(1, 1, 1, 1, 1, 1).getMaxVisitsPerRightNode(), is(1));
+        assertThat(new RecommendationStats().getMaxVisitsPerRightNode(), is(0));
+    }
 
-  @Test(timeout=10000)
-  public void getNumRightNodesReachedTest() {
-    // Arrange, Act and Assert
-    assertEquals(0, (new RecommendationStats()).getNumRightNodesReached());
-  }
+    @Test(timeout=10000)
+    public void getMinVisitsPerRightNode() {
+        assertThat(new RecommendationStats().getMinVisitsPerRightNode(), is(2_147_483_647));
+        assertThat(new RecommendationStats(1, 1, 1, 0, 1, 1).getMinVisitsPerRightNode(), is(0));
+    }
 
-  @Test(timeout=10000)
-  public void getNumRHSVisitsTest() {
-    // Arrange, Act and Assert
-    assertEquals(0, (new RecommendationStats()).getNumRHSVisits());
-  }
+    @Test(timeout=10000)
+    public void getNumDirectNeighbors() {
+        assertThat(new RecommendationStats(1, 1, 1, 1, 1, 1).getNumDirectNeighbors(), is(1));
+        assertThat(new RecommendationStats().getNumDirectNeighbors(), is(0));
+    }
 
-  @Test(timeout=10000)
-  public void setNumRightNodesFilteredTest() {
-    // Arrange
-    RecommendationStats recommendationStats = new RecommendationStats();
+    @Test(timeout=10000)
+    public void getNumRHSVisits() {
+        assertThat(new RecommendationStats(1, 1, 1, 1, 1, 1).getNumRHSVisits(), is(1));
+        assertThat(new RecommendationStats().getNumRHSVisits(), is(0));
+    }
 
-    // Act
-    recommendationStats.setNumRightNodesFiltered(10);
+    @Test(timeout=10000)
+    public void getNumRightNodesFiltered() {
+        assertThat(new RecommendationStats(1, 1, 1, 1, 1, 1).getNumRightNodesFiltered(), is(1));
+        assertThat(new RecommendationStats().getNumRightNodesFiltered(), is(0));
+    }
 
-    // Assert
-    assertEquals(10, recommendationStats.getNumRightNodesFiltered());
-  }
+    @Test(timeout=10000)
+    public void getNumRightNodesReached() {
+        assertThat(new RecommendationStats(1, 1, 1, 1, 1, 1).getNumRightNodesReached(), is(1));
+        assertThat(new RecommendationStats().getNumRightNodesReached(), is(0));
+    }
 
-  @Test(timeout=10000)
-  public void getNumDirectNeighborsTest() {
-    // Arrange, Act and Assert
-    assertEquals(0, (new RecommendationStats()).getNumDirectNeighbors());
-  }
+    @Test(timeout=10000)
+    public void reset() {
+        new RecommendationStats().reset();
+    }
 
-  @Test(timeout=10000)
-  public void getMinVisitsPerRightNodeTest() {
-    // Arrange, Act and Assert
-    assertEquals(2147483647, (new RecommendationStats()).getMinVisitsPerRightNode());
-  }
+    @Test(timeout=10000)
+    public void setMaxVisitsPerRightNodeToOne() {
+        RecommendationStats recommendationStats = new RecommendationStats();
+        recommendationStats.setMaxVisitsPerRightNode(1);
+        assertThat(recommendationStats.getMaxVisitsPerRightNode(), is(1));
+    }
 
-  @Test(timeout=10000)
-  public void setNumRHSVisitsTest() {
-    // Arrange
-    RecommendationStats recommendationStats = new RecommendationStats();
+    @Test(timeout=10000)
+    public void setMinVisitsPerRightNodeToOne() {
+        RecommendationStats recommendationStats = new RecommendationStats();
+        recommendationStats.setMinVisitsPerRightNode(1);
+        assertThat(recommendationStats.getMinVisitsPerRightNode(), is(1));
+    }
 
-    // Act
-    recommendationStats.setNumRHSVisits(10);
+    @Test(timeout=10000)
+    public void setNumDirectNeighborsToOne() {
+        RecommendationStats recommendationStats = new RecommendationStats();
+        recommendationStats.setNumDirectNeighbors(1);
+        assertThat(recommendationStats.getNumDirectNeighbors(), is(1));
+    }
 
-    // Assert
-    assertEquals(10, recommendationStats.getNumRHSVisits());
-  }
+    @Test(timeout=10000)
+    public void setNumRHSVisitsToOne() {
+        RecommendationStats recommendationStats = new RecommendationStats();
+        recommendationStats.setNumRHSVisits(1);
+        assertThat(recommendationStats.getNumRHSVisits(), is(1));
+    }
 
-  @Test(timeout=10000)
-  public void addToNumRHSVisitsTest() {
-    // Arrange
-    RecommendationStats recommendationStats = new RecommendationStats();
+    @Test(timeout=10000)
+    public void setNumRightNodesFilteredToOne() {
+        RecommendationStats recommendationStats = new RecommendationStats();
+        recommendationStats.setNumRightNodesFiltered(1);
+        assertThat(recommendationStats.getNumRightNodesFiltered(), is(1));
+    }
 
-    // Act
-    recommendationStats.addToNumRHSVisits(10);
+    @Test(timeout=10000)
+    public void setNumRightNodesReachedToOne() {
+        RecommendationStats recommendationStats = new RecommendationStats();
+        recommendationStats.setNumRightNodesReached(1);
+        assertThat(recommendationStats.getNumRightNodesReached(), is(1));
+    }
 
-    // Assert
-    assertEquals(10, recommendationStats.getNumRHSVisits());
-  }
+    @Test(timeout=10000)
+    public void testequals() {
+        assertThat(new RecommendationStats().equals("foo"), is(false));
+        assertThat(new RecommendationStats().equals(null), is(false));
+    }
 
-  @Test(timeout=10000)
-  public void setMaxVisitsPerRightNodeTest() {
-    // Arrange
-    RecommendationStats recommendationStats = new RecommendationStats();
+    @Test(timeout=10000)
+    public void updateMaxVisitsPerRightNodeNumVisitsIsOne() {
+        RecommendationStats recommendationStats = new RecommendationStats();
+        recommendationStats.updateMaxVisitsPerRightNode(1);
+        assertThat(recommendationStats.getMaxVisitsPerRightNode(), is(1));
+    }
 
-    // Act
-    recommendationStats.setMaxVisitsPerRightNode(3);
+    @Test(timeout=10000)
+    public void updateMinVisitsPerRightNodeNumVisitsIsOne() {
+        RecommendationStats recommendationStats = new RecommendationStats();
+        recommendationStats.updateMinVisitsPerRightNode(1);
+        assertThat(recommendationStats.getMinVisitsPerRightNode(), is(1));
+    }
 
-    // Assert
-    assertEquals(3, recommendationStats.getMaxVisitsPerRightNode());
-  }
-
-  @Test(timeout=10000)
-  public void setNumRightNodesReachedTest() {
-    // Arrange
-    RecommendationStats recommendationStats = new RecommendationStats();
-
-    // Act
-    recommendationStats.setNumRightNodesReached(10);
-
-    // Assert
-    assertEquals(10, recommendationStats.getNumRightNodesReached());
-  }
-
-  @Test(timeout=10000)
-  public void equalsTest() {
-    // Arrange, Act and Assert
-    assertFalse((new RecommendationStats()).equals("foo"));
-  }
-
-  @Test(timeout=10000)
-  public void constructorTest2() {
-    // Arrange and Act
-    RecommendationStats actualRecommendationStats = new RecommendationStats(10, 10, 10, 1, 3, 10);
-
-    // Assert
-    int actualNumRightNodesFiltered = actualRecommendationStats.getNumRightNodesFiltered();
-    int actualMinVisitsPerRightNode = actualRecommendationStats.getMinVisitsPerRightNode();
-    int actualNumDirectNeighbors = actualRecommendationStats.getNumDirectNeighbors();
-    int actualNumRHSVisits = actualRecommendationStats.getNumRHSVisits();
-    int actualMaxVisitsPerRightNode = actualRecommendationStats.getMaxVisitsPerRightNode();
-    assertEquals(10, actualNumRightNodesFiltered);
-    assertEquals(10, actualRecommendationStats.getNumRightNodesReached());
-    assertEquals(3, actualMaxVisitsPerRightNode);
-    assertEquals(10, actualNumRHSVisits);
-    assertEquals(10, actualNumDirectNeighbors);
-    assertEquals(1, actualMinVisitsPerRightNode);
-  }
-
-  @Test(timeout=10000)
-  public void updateVisitStatsPerRightNodeTest() {
-    // Arrange
-    RecommendationStats recommendationStats = new RecommendationStats();
-
-    // Act
-    recommendationStats.updateVisitStatsPerRightNode(10);
-
-    // Assert
-    int actualMinVisitsPerRightNode = recommendationStats.getMinVisitsPerRightNode();
-    assertEquals(10, recommendationStats.getMaxVisitsPerRightNode());
-    assertEquals(10, actualMinVisitsPerRightNode);
-  }
-
-  @Test(timeout=10000)
-  public void getMaxVisitsPerRightNodeTest() {
-    // Arrange, Act and Assert
-    assertEquals(0, (new RecommendationStats()).getMaxVisitsPerRightNode());
-  }
-
-  @Test(timeout=10000)
-  public void updateMinVisitsPerRightNodeTest() {
-    // Arrange
-    RecommendationStats recommendationStats = new RecommendationStats();
-
-    // Act
-    recommendationStats.updateMinVisitsPerRightNode(10);
-
-    // Assert
-    assertEquals(10, recommendationStats.getMinVisitsPerRightNode());
-  }
-
-  @Test(timeout=10000)
-  public void resetTest() {
-    // Arrange
-    RecommendationStats recommendationStats = new RecommendationStats();
-
-    // Act
-    recommendationStats.reset();
-
-    // Assert
-    int actualNumRightNodesFiltered = recommendationStats.getNumRightNodesFiltered();
-    int actualMinVisitsPerRightNode = recommendationStats.getMinVisitsPerRightNode();
-    int actualNumDirectNeighbors = recommendationStats.getNumDirectNeighbors();
-    int actualNumRHSVisits = recommendationStats.getNumRHSVisits();
-    int actualMaxVisitsPerRightNode = recommendationStats.getMaxVisitsPerRightNode();
-    assertEquals(0, actualNumRightNodesFiltered);
-    assertEquals(0, recommendationStats.getNumRightNodesReached());
-    assertEquals(0, actualMaxVisitsPerRightNode);
-    assertEquals(0, actualNumRHSVisits);
-    assertEquals(0, actualNumDirectNeighbors);
-    assertEquals(2147483647, actualMinVisitsPerRightNode);
-  }
-
-  @Test(timeout=10000)
-  public void updateMaxVisitsPerRightNodeTest() {
-    // Arrange
-    RecommendationStats recommendationStats = new RecommendationStats();
-
-    // Act
-    recommendationStats.updateMaxVisitsPerRightNode(10);
-
-    // Assert
-    assertEquals(10, recommendationStats.getMaxVisitsPerRightNode());
-  }
-
-  @Test(timeout=10000)
-  public void setNumDirectNeighborsTest() {
-    // Arrange
-    RecommendationStats recommendationStats = new RecommendationStats();
-
-    // Act
-    recommendationStats.setNumDirectNeighbors(10);
-
-    // Assert
-    assertEquals(10, recommendationStats.getNumDirectNeighbors());
-  }
-
-  @Test(timeout=10000)
-  public void hashCodeTest() {
-    // Arrange, Act and Assert
-    assertEquals(-1259980928, (new RecommendationStats()).hashCode());
-  }
-
-  @Test(timeout=10000)
-  public void constructorTest() {
-    // Arrange and Act
-    RecommendationStats actualRecommendationStats = new RecommendationStats();
-
-    // Assert
-    int actualNumRightNodesFiltered = actualRecommendationStats.getNumRightNodesFiltered();
-    int actualMinVisitsPerRightNode = actualRecommendationStats.getMinVisitsPerRightNode();
-    int actualNumDirectNeighbors = actualRecommendationStats.getNumDirectNeighbors();
-    int actualNumRHSVisits = actualRecommendationStats.getNumRHSVisits();
-    int actualMaxVisitsPerRightNode = actualRecommendationStats.getMaxVisitsPerRightNode();
-    assertEquals(0, actualNumRightNodesFiltered);
-    assertEquals(0, actualRecommendationStats.getNumRightNodesReached());
-    assertEquals(0, actualMaxVisitsPerRightNode);
-    assertEquals(0, actualNumRHSVisits);
-    assertEquals(0, actualNumDirectNeighbors);
-    assertEquals(2147483647, actualMinVisitsPerRightNode);
-  }
-
-  @Test(timeout=10000)
-  public void getNumRightNodesFilteredTest() {
-    // Arrange, Act and Assert
-    assertEquals(0, (new RecommendationStats()).getNumRightNodesFiltered());
-  }
+    @Test(timeout=10000)
+    public void updateVisitStatsPerRightNodeNumVisitsIsOne() {
+        RecommendationStats recommendationStats = new RecommendationStats();
+        recommendationStats.updateVisitStatsPerRightNode(1);
+        assertThat(recommendationStats.getMaxVisitsPerRightNode(), is(1));
+        assertThat(recommendationStats.getMinVisitsPerRightNode(), is(1));
+    }
 }
-

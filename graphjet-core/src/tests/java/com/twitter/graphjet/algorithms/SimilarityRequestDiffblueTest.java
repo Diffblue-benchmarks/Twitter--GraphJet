@@ -1,30 +1,27 @@
 package com.twitter.graphjet.algorithms;
 
-import static org.junit.Assert.assertEquals;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.core.Is.is;
+
 import org.junit.Test;
 
+/**
+ * Unit tests for com.twitter.graphjet.algorithms.SimilarityRequest
+ *
+ * @author Diffblue JCover
+ */
+
 public class SimilarityRequestDiffblueTest {
-  @Test(timeout=10000)
-  public void getQueryNodeTest() {
-    // Arrange, Act and Assert
-    assertEquals(1L, (new SimilarityRequest(1L, 3)).getQueryNode());
-  }
 
-  @Test(timeout=10000)
-  public void constructorTest() {
-    // Arrange and Act
-    SimilarityRequest actualSimilarityRequest = new SimilarityRequest(1L, 3);
+    @Test(timeout=10000)
+    public void getMaxNumResults() {
+        assertThat(new SimilarityRequest(1L, 1).getMaxNumResults(), is(1));
+        assertThat(new SimilarityRequest(1L, 0).getMaxNumResults(), is(0));
+    }
 
-    // Assert
-    int actualMaxNumResults = actualSimilarityRequest.getMaxNumResults();
-    assertEquals(3, actualMaxNumResults);
-    assertEquals(1L, actualSimilarityRequest.getQueryNode());
-  }
-
-  @Test(timeout=10000)
-  public void getMaxNumResultsTest() {
-    // Arrange, Act and Assert
-    assertEquals(3, (new SimilarityRequest(1L, 3)).getMaxNumResults());
-  }
+    @Test(timeout=10000)
+    public void getQueryNode() {
+        assertThat(new SimilarityRequest(1L, 1).getQueryNode(), is(1L));
+        assertThat(new SimilarityRequest(0L, 1).getQueryNode(), is(0L));
+    }
 }
-
