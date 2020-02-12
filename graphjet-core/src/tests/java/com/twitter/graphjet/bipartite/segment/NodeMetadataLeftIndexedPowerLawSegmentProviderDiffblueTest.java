@@ -9,15 +9,16 @@ public class NodeMetadataLeftIndexedPowerLawSegmentProviderDiffblueTest {
   @Test(timeout=10000)
   public void constructorTest() {
     // Arrange
-    IdentityEdgeTypeMask identityEdgeTypeMask = new IdentityEdgeTypeMask();
+    IdentityEdgeTypeMask edgeTypeMask = new IdentityEdgeTypeMask();
+    NullStatsReceiver nullStatsReceiver = new NullStatsReceiver();
 
     // Act
     NodeMetadataLeftIndexedPowerLawSegmentProvider actualNodeMetadataLeftIndexedPowerLawSegmentProvider = new NodeMetadataLeftIndexedPowerLawSegmentProvider(
-        10, 1, 10.0, 10, 10, identityEdgeTypeMask, new NullStatsReceiver());
+        10, 1, 10.0, 10, 10, edgeTypeMask, nullStatsReceiver);
 
     // Assert
-    assertSame(identityEdgeTypeMask, actualNodeMetadataLeftIndexedPowerLawSegmentProvider.edgeTypeMask);
-    assertTrue(actualNodeMetadataLeftIndexedPowerLawSegmentProvider.statsReceiver instanceof NullStatsReceiver);
+    assertTrue(actualNodeMetadataLeftIndexedPowerLawSegmentProvider.edgeTypeMask instanceof IdentityEdgeTypeMask);
+    assertSame(nullStatsReceiver, actualNodeMetadataLeftIndexedPowerLawSegmentProvider.statsReceiver);
   }
 }
 

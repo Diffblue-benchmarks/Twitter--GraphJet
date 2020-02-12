@@ -3,7 +3,6 @@ package com.twitter.graphjet.algorithms.filters;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertSame;
-import static org.junit.Assert.assertTrue;
 import com.twitter.graphjet.hashing.SmallArrayBasedLongToDoubleMap;
 import com.twitter.graphjet.stats.NullStatsReceiver;
 import org.junit.Test;
@@ -23,11 +22,14 @@ public class RequestedSetFilterDiffblueTest {
 
   @Test(timeout=10000)
   public void constructorTest() {
-    // Arrange and Act
-    RequestedSetFilter actualRequestedSetFilter = new RequestedSetFilter(new NullStatsReceiver());
+    // Arrange
+    NullStatsReceiver nullStatsReceiver = new NullStatsReceiver();
+
+    // Act
+    RequestedSetFilter actualRequestedSetFilter = new RequestedSetFilter(nullStatsReceiver);
 
     // Assert
-    assertTrue(actualRequestedSetFilter.scopedStatsReceiver instanceof NullStatsReceiver);
+    assertSame(nullStatsReceiver, actualRequestedSetFilter.scopedStatsReceiver);
     assertSame(actualRequestedSetFilter.inputCounter, actualRequestedSetFilter.filteredCounter);
   }
 

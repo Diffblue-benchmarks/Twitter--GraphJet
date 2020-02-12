@@ -31,19 +31,20 @@ public class WithEdgeMetadataOptimizedEdgePoolDiffblueTest {
   public void constructorTest2() {
     // Arrange
     ShardedBigIntArray edges = new ShardedBigIntArray(10, 1, 1, new NullStatsReceiver());
-    ShardedBigLongArray shardedBigLongArray = new ShardedBigLongArray(10, 1, 1L, new NullStatsReceiver());
+    ShardedBigLongArray metadata = new ShardedBigLongArray(10, 1, 1L, new NullStatsReceiver());
 
     // Act
     WithEdgeMetadataOptimizedEdgePool.WithEdgeMetadataReaderAccessibleInfo actualWithEdgeMetadataReaderAccessibleInfo = new WithEdgeMetadataOptimizedEdgePool.WithEdgeMetadataReaderAccessibleInfo(
-        edges, shardedBigLongArray, new IntToIntPairArrayIndexBasedMap(10, 42, new NullStatsReceiver()));
+        edges, metadata, new IntToIntPairArrayIndexBasedMap(10, 42, new NullStatsReceiver()));
 
     // Assert
+    BigLongArray expectedMetadata = actualWithEdgeMetadataReaderAccessibleInfo.metadata;
     IntToIntPairHashMap expectedNodeInfo = actualWithEdgeMetadataReaderAccessibleInfo.nodeInfo;
     BigIntArray expectedEdges = actualWithEdgeMetadataReaderAccessibleInfo.edges;
     BigIntArray actualEdges = actualWithEdgeMetadataReaderAccessibleInfo.getEdges();
     IntToIntPairHashMap actualNodeInfo = actualWithEdgeMetadataReaderAccessibleInfo.getNodeInfo();
     assertSame(expectedEdges, actualEdges);
-    assertSame(shardedBigLongArray, actualWithEdgeMetadataReaderAccessibleInfo.getMetadata());
+    assertSame(expectedMetadata, actualWithEdgeMetadataReaderAccessibleInfo.getMetadata());
     assertSame(expectedNodeInfo, actualNodeInfo);
   }
 

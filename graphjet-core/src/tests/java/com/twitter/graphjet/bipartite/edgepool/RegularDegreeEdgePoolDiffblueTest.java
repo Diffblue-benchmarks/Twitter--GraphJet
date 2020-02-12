@@ -29,43 +29,41 @@ public class RegularDegreeEdgePoolDiffblueTest {
   }
 
   @Test(timeout=10000)
-  public void constructorTest2() {
+  public void constructorTest3() {
     // Arrange
-    ShardedBigIntArray edges = new ShardedBigIntArray(10, 1, 1, new NullStatsReceiver());
+    ShardedBigIntArray shardedBigIntArray = new ShardedBigIntArray(10, 1, 1, new NullStatsReceiver());
+    IntToIntPairArrayIndexBasedMap intToIntPairArrayIndexBasedMap = new IntToIntPairArrayIndexBasedMap(10, 42,
+        new NullStatsReceiver());
 
     // Act
     RegularDegreeEdgePool.ReaderAccessibleInfo actualReaderAccessibleInfo = new RegularDegreeEdgePool.ReaderAccessibleInfo(
-        edges, new IntToIntPairArrayIndexBasedMap(10, 42, new NullStatsReceiver()));
+        shardedBigIntArray, intToIntPairArrayIndexBasedMap);
 
     // Assert
-    BigIntArray expectedEdges = actualReaderAccessibleInfo.edges;
-    IntToIntPairHashMap expectedNodeInfo = actualReaderAccessibleInfo.nodeInfo;
     BigIntArray actualEdges = actualReaderAccessibleInfo.getEdges();
-    assertSame(expectedEdges, actualEdges);
-    assertSame(expectedNodeInfo, actualReaderAccessibleInfo.getNodeInfo());
+    assertSame(shardedBigIntArray, actualEdges);
+    assertSame(intToIntPairArrayIndexBasedMap, actualReaderAccessibleInfo.getNodeInfo());
   }
 
   @Test(timeout=10000)
   public void getNodeInfoTest() {
     // Arrange
     ShardedBigIntArray edges = new ShardedBigIntArray(10, 1, 1, new NullStatsReceiver());
-    IntToIntPairArrayIndexBasedMap intToIntPairArrayIndexBasedMap = new IntToIntPairArrayIndexBasedMap(10, 42,
-        new NullStatsReceiver());
+    RegularDegreeEdgePool.ReaderAccessibleInfo readerAccessibleInfo = new RegularDegreeEdgePool.ReaderAccessibleInfo(
+        edges, new IntToIntPairArrayIndexBasedMap(10, 42, new NullStatsReceiver()));
 
     // Act and Assert
-    assertSame(intToIntPairArrayIndexBasedMap,
-        (new RegularDegreeEdgePool.ReaderAccessibleInfo(edges, intToIntPairArrayIndexBasedMap)).getNodeInfo());
+    assertSame(readerAccessibleInfo.nodeInfo, readerAccessibleInfo.getNodeInfo());
   }
 
   @Test(timeout=10000)
   public void getEdgesTest() {
     // Arrange
-    ShardedBigIntArray edges = new ShardedBigIntArray(10, 1, 1, new NullStatsReceiver());
-    RegularDegreeEdgePool.ReaderAccessibleInfo readerAccessibleInfo = new RegularDegreeEdgePool.ReaderAccessibleInfo(
-        edges, new IntToIntPairArrayIndexBasedMap(10, 42, new NullStatsReceiver()));
+    ShardedBigIntArray shardedBigIntArray = new ShardedBigIntArray(10, 1, 1, new NullStatsReceiver());
 
     // Act and Assert
-    assertSame(readerAccessibleInfo.edges, readerAccessibleInfo.getEdges());
+    assertSame(shardedBigIntArray, (new RegularDegreeEdgePool.ReaderAccessibleInfo(shardedBigIntArray,
+        new IntToIntPairArrayIndexBasedMap(10, 42, new NullStatsReceiver()))).getEdges());
   }
 
   @Test(timeout=10000)
@@ -104,16 +102,13 @@ public class RegularDegreeEdgePoolDiffblueTest {
   }
 
   @Test(timeout=10000)
-  public void constructorTest() {
-    // Arrange
-    NullStatsReceiver nullStatsReceiver = new NullStatsReceiver();
-
-    // Act
-    RegularDegreeEdgePool actualRegularDegreeEdgePool = new RegularDegreeEdgePool(10, 3, nullStatsReceiver);
+  public void constructorTest2() {
+    // Arrange and Act
+    RegularDegreeEdgePool actualRegularDegreeEdgePool = new RegularDegreeEdgePool(10, 3, new NullStatsReceiver());
 
     // Assert
     double actualFillPercentage = actualRegularDegreeEdgePool.getFillPercentage();
-    StatsReceiver actualStatsReceiver = actualRegularDegreeEdgePool.scopedStatsReceiver;
+    StatsReceiver statsReceiver = actualRegularDegreeEdgePool.scopedStatsReceiver;
     int actualResultInt = actualRegularDegreeEdgePool.currentPositionOffset;
     EdgePoolReaderAccessibleInfo edgePoolReaderAccessibleInfo = actualRegularDegreeEdgePool.readerAccessibleInfo;
     assertEquals(0, actualRegularDegreeEdgePool.currentShardId);
@@ -123,10 +118,36 @@ public class RegularDegreeEdgePoolDiffblueTest {
     BigIntArray edges = edgePoolReaderAccessibleInfo.getEdges();
     assertEquals(0, actualResultInt);
     assertEquals(0.0, actualFillPercentage, 0.0);
-    assertSame(nullStatsReceiver, actualStatsReceiver);
+    assertTrue(statsReceiver instanceof NullStatsReceiver);
     assertTrue(edgePoolReaderAccessibleInfo
         .getNodeInfo() instanceof com.twitter.graphjet.hashing.IntToIntPairConcurrentHashMap);
     assertEquals(0.0, edges.getFillPercentage(), 0.0);
+  }
+
+  @Test(timeout=10000)
+  public void constructorTest() {
+    // Arrange and Act
+    RegularDegreeEdgePool actualRegularDegreeEdgePool = new RegularDegreeEdgePool(10, 2, new NullStatsReceiver());
+
+    // Assert
+    double actualFillPercentage = actualRegularDegreeEdgePool.getFillPercentage();
+    StatsReceiver statsReceiver = actualRegularDegreeEdgePool.scopedStatsReceiver;
+    int actualResultInt = actualRegularDegreeEdgePool.currentPositionOffset;
+    EdgePoolReaderAccessibleInfo edgePoolReaderAccessibleInfo = actualRegularDegreeEdgePool.readerAccessibleInfo;
+    assertEquals(0, actualRegularDegreeEdgePool.currentShardId);
+    assertEquals(0, actualRegularDegreeEdgePool.currentNumNodes);
+    assertEquals(2, actualRegularDegreeEdgePool.maxDegree);
+    assertSame(actualRegularDegreeEdgePool.numNodesCounter, actualRegularDegreeEdgePool.numEdgesCounter);
+    BigIntArray edges = edgePoolReaderAccessibleInfo.getEdges();
+    IntToIntPairHashMap nodeInfo = edgePoolReaderAccessibleInfo.getNodeInfo();
+    assertEquals(0, actualResultInt);
+    assertEquals(0.0, actualFillPercentage, 0.0);
+    assertTrue(statsReceiver instanceof NullStatsReceiver);
+    assertTrue(nodeInfo instanceof IntToIntPairArrayIndexBasedMap);
+    BigIntArray bigIntArray = ((IntToIntPairArrayIndexBasedMap) nodeInfo).array;
+    assertEquals(0.0, edges.getFillPercentage(), 0.0);
+    assertTrue(bigIntArray instanceof com.twitter.graphjet.hashing.ShardedBigIntArray);
+    assertEquals(0.0, bigIntArray.getFillPercentage(), 0.0);
   }
 }
 

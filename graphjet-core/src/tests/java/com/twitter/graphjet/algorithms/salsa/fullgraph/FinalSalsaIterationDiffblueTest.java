@@ -1,6 +1,5 @@
 package com.twitter.graphjet.algorithms.salsa.fullgraph;
 
-import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertTrue;
 import com.twitter.graphjet.algorithms.salsa.SalsaNodeVisitor;
 import com.twitter.graphjet.algorithms.salsa.SalsaStats;
@@ -14,14 +13,10 @@ public class FinalSalsaIterationDiffblueTest {
     // Arrange
     SmallLeftRegularBipartiteGraph bipartiteGraph = new SmallLeftRegularBipartiteGraph(3, 1, 3, 3, 10.0, 3,
         new NullStatsReceiver());
-    SalsaInternalState salsaInternalState = new SalsaInternalState(bipartiteGraph, new SalsaStats(), 1);
 
-    // Act
-    FinalSalsaIteration actualFinalSalsaIteration = new FinalSalsaIteration(salsaInternalState);
-
-    // Assert
-    assertSame(salsaInternalState, actualFinalSalsaIteration.salsaInternalState);
-    assertTrue(actualFinalSalsaIteration.nodeVisitor instanceof SalsaNodeVisitor.NodeVisitorWithSocialProof);
+    // Act and Assert
+    assertTrue((new FinalSalsaIteration(new SalsaInternalState(bipartiteGraph, new SalsaStats(),
+        1))).nodeVisitor instanceof SalsaNodeVisitor.NodeVisitorWithSocialProof);
   }
 }
 

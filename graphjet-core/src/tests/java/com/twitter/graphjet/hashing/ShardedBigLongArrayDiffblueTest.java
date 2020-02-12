@@ -7,7 +7,7 @@ import org.junit.Test;
 
 public class ShardedBigLongArrayDiffblueTest {
   @Test(timeout=10000)
-  public void constructorTest2() {
+  public void constructorTest3() {
     // Arrange
     long[] longArray = new long[8];
     Arrays.fill(longArray, 1L);
@@ -19,6 +19,12 @@ public class ShardedBigLongArrayDiffblueTest {
     // Act and Assert
     assertEquals(3,
         (new ShardedBigLongArray.ReaderAccessibleInfo(new long[][]{longArray, longArray1, longArray2})).array.length);
+  }
+
+  @Test(timeout=10000)
+  public void getEntryTest2() {
+    // Arrange, Act and Assert
+    assertEquals(1L, (new ShardedBigLongArray(10, 1, 1L, new NullStatsReceiver())).getEntry(2147483647));
   }
 
   @Test(timeout=10000)
@@ -34,9 +40,19 @@ public class ShardedBigLongArrayDiffblueTest {
   }
 
   @Test(timeout=10000)
-  public void constructorTest() {
+  public void constructorTest2() {
     // Arrange and Act
     ShardedBigLongArray actualShardedBigLongArray = new ShardedBigLongArray(10, 1, 1L, new NullStatsReceiver());
+
+    // Assert
+    assertEquals(0.0, actualShardedBigLongArray.getFillPercentage(), 0.0);
+    assertEquals(1, actualShardedBigLongArray.readerAccessibleInfo.array.length);
+  }
+
+  @Test(timeout=10000)
+  public void constructorTest() {
+    // Arrange and Act
+    ShardedBigLongArray actualShardedBigLongArray = new ShardedBigLongArray(10, 1, 0L, new NullStatsReceiver());
 
     // Assert
     assertEquals(0.0, actualShardedBigLongArray.getFillPercentage(), 0.0);
@@ -62,6 +78,36 @@ public class ShardedBigLongArrayDiffblueTest {
   }
 
   @Test(timeout=10000)
+  public void arrayCopyTest3() {
+    // Arrange
+    ShardedBigLongArray shardedBigLongArray = new ShardedBigLongArray(10, 1, 1L, new NullStatsReceiver());
+    long[] longArray = new long[8];
+    Arrays.fill(longArray, 1L);
+
+    // Act
+    shardedBigLongArray.arrayCopy(longArray, 1, 65536, 3, true);
+
+    // Assert
+    assertEquals(0.00152587890625, shardedBigLongArray.getFillPercentage(), 0.0);
+    assertEquals(2, shardedBigLongArray.readerAccessibleInfo.array.length);
+  }
+
+  @Test(timeout=10000)
+  public void arrayCopyTest2() {
+    // Arrange
+    ShardedBigLongArray shardedBigLongArray = new ShardedBigLongArray(10, 1, 0L, new NullStatsReceiver());
+    long[] longArray = new long[8];
+    Arrays.fill(longArray, 1L);
+
+    // Act
+    shardedBigLongArray.arrayCopy(longArray, 1, 65536, 3, true);
+
+    // Assert
+    assertEquals(0.00152587890625, shardedBigLongArray.getFillPercentage(), 0.0);
+    assertEquals(2, shardedBigLongArray.readerAccessibleInfo.array.length);
+  }
+
+  @Test(timeout=10000)
   public void arrayCopyTest() {
     // Arrange
     ShardedBigLongArray shardedBigLongArray = new ShardedBigLongArray(10, 1, 1L, new NullStatsReceiver());
@@ -76,7 +122,7 @@ public class ShardedBigLongArrayDiffblueTest {
   }
 
   @Test(timeout=10000)
-  public void addEntryTest() {
+  public void addEntryTest2() {
     // Arrange
     ShardedBigLongArray shardedBigLongArray = new ShardedBigLongArray(10, 1, 1L, new NullStatsReceiver());
 
@@ -85,6 +131,19 @@ public class ShardedBigLongArrayDiffblueTest {
 
     // Assert
     assertEquals(7.62939453125E-4, shardedBigLongArray.getFillPercentage(), 0.0);
+  }
+
+  @Test(timeout=10000)
+  public void addEntryTest() {
+    // Arrange
+    ShardedBigLongArray shardedBigLongArray = new ShardedBigLongArray(10, 1, 1L, new NullStatsReceiver());
+
+    // Act
+    shardedBigLongArray.addEntry(1L, 2147483647);
+
+    // Assert
+    assertEquals(5.086263020833334E-4, shardedBigLongArray.getFillPercentage(), 0.0);
+    assertEquals(32768, shardedBigLongArray.readerAccessibleInfo.array.length);
   }
 
   @Test(timeout=10000)

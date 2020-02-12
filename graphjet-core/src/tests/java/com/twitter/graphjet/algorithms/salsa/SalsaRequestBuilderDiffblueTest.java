@@ -7,9 +7,14 @@ import it.unimi.dsi.fastutil.longs.Long2DoubleAVLTreeMap;
 import it.unimi.dsi.fastutil.longs.Long2DoubleMap;
 import it.unimi.dsi.fastutil.longs.LongAVLTreeSet;
 import it.unimi.dsi.fastutil.longs.LongSet;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 
 public class SalsaRequestBuilderDiffblueTest {
+  @Rule
+  public ExpectedException thrown = ExpectedException.none();
+
   @Test(timeout=10000)
   public void withMaxSocialProofTypeSizeTest() {
     // Arrange
@@ -107,12 +112,19 @@ public class SalsaRequestBuilderDiffblueTest {
   }
 
   @Test(timeout=10000)
-  public void withMaxRandomWalkLengthTest() {
+  public void withMaxRandomWalkLengthTest2() {
     // Arrange
     SalsaRequestBuilder salsaRequestBuilder = new SalsaRequestBuilder(1L);
 
     // Act and Assert
     assertSame(salsaRequestBuilder, salsaRequestBuilder.withMaxRandomWalkLength(3));
+  }
+
+  @Test(timeout=10000)
+  public void withMaxRandomWalkLengthTest() {
+    // Arrange, Act and Assert
+    thrown.expect(IllegalArgumentException.class);
+    (new SalsaRequestBuilder(1L)).withMaxRandomWalkLength(2);
   }
 
   @Test(timeout=10000)

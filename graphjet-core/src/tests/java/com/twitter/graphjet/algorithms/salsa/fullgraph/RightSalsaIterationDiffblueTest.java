@@ -15,7 +15,7 @@ public class RightSalsaIterationDiffblueTest {
     SalsaInternalState salsaInternalState = new SalsaInternalState(bipartiteGraph, new SalsaStats(), 1);
 
     // Act and Assert
-    assertSame((new RightSalsaIteration(salsaInternalState)).salsaInternalState, salsaInternalState);
+    assertSame(salsaInternalState, (new RightSalsaIteration(salsaInternalState)).salsaInternalState);
   }
 }
 

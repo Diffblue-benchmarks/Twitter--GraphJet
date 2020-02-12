@@ -11,10 +11,16 @@ public class ArrayBasedLongToInternalIntBiMapDiffblueTest {
   public ExpectedException thrown = ExpectedException.none();
 
   @Test(timeout=10000)
-  public void getKeyTest() {
+  public void getKeyTest2() {
     // Arrange, Act and Assert
     thrown.expect(ArrayIndexOutOfBoundsException.class);
     (new ArrayBasedLongToInternalIntBiMap(10, 10.0, 42, 42L, new NullStatsReceiver())).getKey(42);
+  }
+
+  @Test(timeout=10000)
+  public void getKeyTest() {
+    // Arrange, Act and Assert
+    assertEquals(42L, (new ArrayBasedLongToInternalIntBiMap(10, 10.0, 42, 42L, new NullStatsReceiver())).getKey(0));
   }
 
   @Test(timeout=10000)

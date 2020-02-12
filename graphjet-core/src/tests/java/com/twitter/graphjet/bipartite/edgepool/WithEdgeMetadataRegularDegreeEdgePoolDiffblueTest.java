@@ -32,23 +32,22 @@ public class WithEdgeMetadataRegularDegreeEdgePoolDiffblueTest {
   }
 
   @Test(timeout=10000)
-  public void constructorTest2() {
+  public void constructorTest3() {
     // Arrange
     ShardedBigIntArray shardedBigIntArray = new ShardedBigIntArray(10, 1, 1, new NullStatsReceiver());
-    ShardedBigLongArray metadata = new ShardedBigLongArray(10, 1, 1L, new NullStatsReceiver());
+    ShardedBigLongArray shardedBigLongArray = new ShardedBigLongArray(10, 1, 1L, new NullStatsReceiver());
     IntToIntPairArrayIndexBasedMap intToIntPairArrayIndexBasedMap = new IntToIntPairArrayIndexBasedMap(10, 42,
         new NullStatsReceiver());
 
     // Act
     WithEdgeMetadataRegularDegreeEdgePool.WithEdgeMetadataReaderAccessibleInfo actualWithEdgeMetadataReaderAccessibleInfo = new WithEdgeMetadataRegularDegreeEdgePool.WithEdgeMetadataReaderAccessibleInfo(
-        shardedBigIntArray, metadata, intToIntPairArrayIndexBasedMap);
+        shardedBigIntArray, shardedBigLongArray, intToIntPairArrayIndexBasedMap);
 
     // Assert
-    BigLongArray expectedMetadata = actualWithEdgeMetadataReaderAccessibleInfo.metadata;
     BigIntArray actualEdges = actualWithEdgeMetadataReaderAccessibleInfo.getEdges();
     IntToIntPairHashMap actualNodeInfo = actualWithEdgeMetadataReaderAccessibleInfo.getNodeInfo();
     assertSame(shardedBigIntArray, actualEdges);
-    assertSame(expectedMetadata, actualWithEdgeMetadataReaderAccessibleInfo.getMetadata());
+    assertSame(shardedBigLongArray, actualWithEdgeMetadataReaderAccessibleInfo.getMetadata());
     assertSame(intToIntPairArrayIndexBasedMap, actualNodeInfo);
   }
 
@@ -57,13 +56,11 @@ public class WithEdgeMetadataRegularDegreeEdgePoolDiffblueTest {
     // Arrange
     ShardedBigIntArray edges = new ShardedBigIntArray(10, 1, 1, new NullStatsReceiver());
     ShardedBigLongArray metadata = new ShardedBigLongArray(10, 1, 1L, new NullStatsReceiver());
-    IntToIntPairArrayIndexBasedMap intToIntPairArrayIndexBasedMap = new IntToIntPairArrayIndexBasedMap(10, 42,
-        new NullStatsReceiver());
+    WithEdgeMetadataRegularDegreeEdgePool.WithEdgeMetadataReaderAccessibleInfo withEdgeMetadataReaderAccessibleInfo = new WithEdgeMetadataRegularDegreeEdgePool.WithEdgeMetadataReaderAccessibleInfo(
+        edges, metadata, new IntToIntPairArrayIndexBasedMap(10, 42, new NullStatsReceiver()));
 
     // Act and Assert
-    assertSame(intToIntPairArrayIndexBasedMap,
-        (new WithEdgeMetadataRegularDegreeEdgePool.WithEdgeMetadataReaderAccessibleInfo(edges, metadata,
-            intToIntPairArrayIndexBasedMap)).getNodeInfo());
+    assertSame(withEdgeMetadataReaderAccessibleInfo.nodeInfo, withEdgeMetadataReaderAccessibleInfo.getNodeInfo());
   }
 
   @Test(timeout=10000)
@@ -121,14 +118,17 @@ public class WithEdgeMetadataRegularDegreeEdgePoolDiffblueTest {
   }
 
   @Test(timeout=10000)
-  public void constructorTest() {
-    // Arrange and Act
+  public void constructorTest2() {
+    // Arrange
+    NullStatsReceiver nullStatsReceiver = new NullStatsReceiver();
+
+    // Act
     WithEdgeMetadataRegularDegreeEdgePool actualWithEdgeMetadataRegularDegreeEdgePool = new WithEdgeMetadataRegularDegreeEdgePool(
-        10, 3, new NullStatsReceiver());
+        10, 3, nullStatsReceiver);
 
     // Assert
     double actualFillPercentage = actualWithEdgeMetadataRegularDegreeEdgePool.getFillPercentage();
-    StatsReceiver statsReceiver = actualWithEdgeMetadataRegularDegreeEdgePool.scopedStatsReceiver;
+    StatsReceiver actualStatsReceiver = actualWithEdgeMetadataRegularDegreeEdgePool.scopedStatsReceiver;
     int actualResultInt = actualWithEdgeMetadataRegularDegreeEdgePool.currentPositionOffset;
     EdgePoolReaderAccessibleInfo edgePoolReaderAccessibleInfo = actualWithEdgeMetadataRegularDegreeEdgePool.readerAccessibleInfo;
     assertEquals(0, actualWithEdgeMetadataRegularDegreeEdgePool.currentShardId);
@@ -141,12 +141,47 @@ public class WithEdgeMetadataRegularDegreeEdgePoolDiffblueTest {
     BigLongArray metadata = edgePoolReaderAccessibleInfo.getMetadata();
     assertEquals(0, actualResultInt);
     assertEquals(0.0, actualFillPercentage, 0.0);
-    assertTrue(statsReceiver instanceof NullStatsReceiver);
+    assertSame(nullStatsReceiver, actualStatsReceiver);
     assertTrue(metadata instanceof com.twitter.graphjet.hashing.ShardedBigLongArray);
     assertTrue(nodeInfo instanceof com.twitter.graphjet.hashing.IntToIntPairConcurrentHashMap);
     double actualFillPercentage1 = metadata.getFillPercentage();
     assertEquals(0.0, actualFillPercentage1, 0.0);
     assertEquals(0.0, edges.getFillPercentage(), 0.0);
+  }
+
+  @Test(timeout=10000)
+  public void constructorTest() {
+    // Arrange
+    NullStatsReceiver nullStatsReceiver = new NullStatsReceiver();
+
+    // Act
+    WithEdgeMetadataRegularDegreeEdgePool actualWithEdgeMetadataRegularDegreeEdgePool = new WithEdgeMetadataRegularDegreeEdgePool(
+        10, 2, nullStatsReceiver);
+
+    // Assert
+    double actualFillPercentage = actualWithEdgeMetadataRegularDegreeEdgePool.getFillPercentage();
+    StatsReceiver actualStatsReceiver = actualWithEdgeMetadataRegularDegreeEdgePool.scopedStatsReceiver;
+    int actualResultInt = actualWithEdgeMetadataRegularDegreeEdgePool.currentPositionOffset;
+    EdgePoolReaderAccessibleInfo edgePoolReaderAccessibleInfo = actualWithEdgeMetadataRegularDegreeEdgePool.readerAccessibleInfo;
+    assertEquals(0, actualWithEdgeMetadataRegularDegreeEdgePool.currentShardId);
+    assertEquals(0, actualWithEdgeMetadataRegularDegreeEdgePool.currentNumNodes);
+    assertEquals(2, actualWithEdgeMetadataRegularDegreeEdgePool.maxDegree);
+    assertSame(actualWithEdgeMetadataRegularDegreeEdgePool.numNodesCounter,
+        actualWithEdgeMetadataRegularDegreeEdgePool.numEdgesCounter);
+    BigIntArray edges = edgePoolReaderAccessibleInfo.getEdges();
+    IntToIntPairHashMap nodeInfo = edgePoolReaderAccessibleInfo.getNodeInfo();
+    BigLongArray metadata = edgePoolReaderAccessibleInfo.getMetadata();
+    assertEquals(0, actualResultInt);
+    assertEquals(0.0, actualFillPercentage, 0.0);
+    assertSame(nullStatsReceiver, actualStatsReceiver);
+    assertTrue(metadata instanceof com.twitter.graphjet.hashing.ShardedBigLongArray);
+    assertTrue(nodeInfo instanceof IntToIntPairArrayIndexBasedMap);
+    double actualFillPercentage1 = metadata.getFillPercentage();
+    BigIntArray bigIntArray = ((IntToIntPairArrayIndexBasedMap) nodeInfo).array;
+    assertTrue(bigIntArray instanceof com.twitter.graphjet.hashing.ShardedBigIntArray);
+    assertEquals(0.0, edges.getFillPercentage(), 0.0);
+    assertEquals(0.0, actualFillPercentage1, 0.0);
+    assertEquals(0.0, bigIntArray.getFillPercentage(), 0.0);
   }
 }
 

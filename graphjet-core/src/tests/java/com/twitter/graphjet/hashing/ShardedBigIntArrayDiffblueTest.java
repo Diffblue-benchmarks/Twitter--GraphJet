@@ -29,13 +29,32 @@ public class ShardedBigIntArrayDiffblueTest {
   }
 
   @Test(timeout=10000)
-  public void getEntryTest() {
+  public void getEntryTest2() {
     // Arrange, Act and Assert
     assertEquals(1, (new ShardedBigIntArray(10, 1, 1, new NullStatsReceiver())).getEntry(1));
   }
 
   @Test(timeout=10000)
-  public void addEntryTest() {
+  public void getEntryTest() {
+    // Arrange, Act and Assert
+    assertEquals(1, (new ShardedBigIntArray(10, 1, 1, new NullStatsReceiver())).getEntry(2147483647));
+  }
+
+  @Test(timeout=10000)
+  public void addEntryTest3() {
+    // Arrange
+    ShardedBigIntArray shardedBigIntArray = new ShardedBigIntArray(10, 1, 1, new NullStatsReceiver());
+
+    // Act
+    shardedBigIntArray.addEntry(2, 2147483647);
+
+    // Assert
+    assertEquals(7.62939453125E-4, shardedBigIntArray.getFillPercentage(), 0.0);
+    assertEquals(32768, shardedBigIntArray.readerAccessibleInfo.array.length);
+  }
+
+  @Test(timeout=10000)
+  public void addEntryTest2() {
     // Arrange
     ShardedBigIntArray shardedBigIntArray = new ShardedBigIntArray(10, 1, 1, new NullStatsReceiver());
 
@@ -44,6 +63,47 @@ public class ShardedBigIntArrayDiffblueTest {
 
     // Assert
     assertEquals(7.62939453125E-4, shardedBigIntArray.getFillPercentage(), 0.0);
+  }
+
+  @Test(timeout=10000)
+  public void addEntryTest() {
+    // Arrange
+    ShardedBigIntArray shardedBigIntArray = new ShardedBigIntArray(10, 1, 0, new NullStatsReceiver());
+
+    // Act
+    shardedBigIntArray.addEntry(2, 1);
+
+    // Assert
+    assertEquals(7.62939453125E-4, shardedBigIntArray.getFillPercentage(), 0.0);
+  }
+
+  @Test(timeout=10000)
+  public void arrayCopyTest3() {
+    // Arrange
+    ShardedBigIntArray shardedBigIntArray = new ShardedBigIntArray(10, 1, 1, new NullStatsReceiver());
+    int[] intArray = new int[8];
+    Arrays.fill(intArray, 1);
+
+    // Act
+    shardedBigIntArray.arrayCopy(intArray, 1, 65536, 3, true);
+
+    // Assert
+    assertEquals(0.002288818359375, shardedBigIntArray.getFillPercentage(), 0.0);
+    assertEquals(2, shardedBigIntArray.readerAccessibleInfo.array.length);
+  }
+
+  @Test(timeout=10000)
+  public void arrayCopyTest2() {
+    // Arrange
+    ShardedBigIntArray shardedBigIntArray = new ShardedBigIntArray(10, 1, 0, new NullStatsReceiver());
+    int[] intArray = new int[8];
+    Arrays.fill(intArray, 1);
+
+    // Act
+    shardedBigIntArray.arrayCopy(intArray, 1, 1, 3, true);
+
+    // Assert
+    assertEquals(0.002288818359375, shardedBigIntArray.getFillPercentage(), 0.0);
   }
 
   @Test(timeout=10000)
@@ -92,6 +152,12 @@ public class ShardedBigIntArrayDiffblueTest {
   public void getFillPercentageTest() {
     // Arrange, Act and Assert
     assertEquals(0.0, (new ShardedBigIntArray(10, 1, 1, new NullStatsReceiver())).getFillPercentage(), 0.0);
+  }
+
+  @Test(timeout=10000)
+  public void incrementEntryTest2() {
+    // Arrange, Act and Assert
+    assertEquals(1, (new ShardedBigIntArray(10, 1, 1, new NullStatsReceiver())).incrementEntry(2147483647, 2));
   }
 
   @Test(timeout=10000)

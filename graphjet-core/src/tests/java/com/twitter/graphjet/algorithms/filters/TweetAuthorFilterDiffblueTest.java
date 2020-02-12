@@ -27,7 +27,7 @@ public class TweetAuthorFilterDiffblueTest {
         longAVLTreeSet1, nullStatsReceiver);
 
     // Assert
-    assertTrue(actualTweetAuthorFilter.scopedStatsReceiver instanceof NullStatsReceiver);
+    assertSame(nullStatsReceiver, actualTweetAuthorFilter.scopedStatsReceiver);
     assertSame(actualTweetAuthorFilter.inputCounter, actualTweetAuthorFilter.filteredCounter);
   }
 

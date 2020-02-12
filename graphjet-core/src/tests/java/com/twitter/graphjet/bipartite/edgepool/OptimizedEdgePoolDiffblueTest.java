@@ -32,30 +32,29 @@ public class OptimizedEdgePoolDiffblueTest {
   @Test(timeout=10000)
   public void constructorTest2() {
     // Arrange
-    ShardedBigIntArray edges = new ShardedBigIntArray(10, 1, 1, new NullStatsReceiver());
+    ShardedBigIntArray shardedBigIntArray = new ShardedBigIntArray(10, 1, 1, new NullStatsReceiver());
+    IntToIntPairArrayIndexBasedMap intToIntPairArrayIndexBasedMap = new IntToIntPairArrayIndexBasedMap(10, 42,
+        new NullStatsReceiver());
 
     // Act
     OptimizedEdgePool.ReaderAccessibleInfo actualReaderAccessibleInfo = new OptimizedEdgePool.ReaderAccessibleInfo(
-        edges, new IntToIntPairArrayIndexBasedMap(10, 42, new NullStatsReceiver()));
+        shardedBigIntArray, intToIntPairArrayIndexBasedMap);
 
     // Assert
-    IntToIntPairHashMap expectedNodeInfo = actualReaderAccessibleInfo.nodeInfo;
-    BigIntArray expectedEdges = actualReaderAccessibleInfo.edges;
     BigIntArray actualEdges = actualReaderAccessibleInfo.getEdges();
-    assertSame(expectedEdges, actualEdges);
-    assertSame(expectedNodeInfo, actualReaderAccessibleInfo.getNodeInfo());
+    assertSame(shardedBigIntArray, actualEdges);
+    assertSame(intToIntPairArrayIndexBasedMap, actualReaderAccessibleInfo.getNodeInfo());
   }
 
   @Test(timeout=10000)
   public void getNodeInfoTest() {
     // Arrange
     ShardedBigIntArray edges = new ShardedBigIntArray(10, 1, 1, new NullStatsReceiver());
-    IntToIntPairArrayIndexBasedMap intToIntPairArrayIndexBasedMap = new IntToIntPairArrayIndexBasedMap(10, 42,
-        new NullStatsReceiver());
+    OptimizedEdgePool.ReaderAccessibleInfo readerAccessibleInfo = new OptimizedEdgePool.ReaderAccessibleInfo(edges,
+        new IntToIntPairArrayIndexBasedMap(10, 42, new NullStatsReceiver()));
 
     // Act and Assert
-    assertSame(intToIntPairArrayIndexBasedMap,
-        (new OptimizedEdgePool.ReaderAccessibleInfo(edges, intToIntPairArrayIndexBasedMap)).getNodeInfo());
+    assertSame(readerAccessibleInfo.nodeInfo, readerAccessibleInfo.getNodeInfo());
   }
 
   @Test(timeout=10000)
@@ -100,13 +99,12 @@ public class OptimizedEdgePoolDiffblueTest {
     // Arrange
     int[] intArray = new int[8];
     Arrays.fill(intArray, 1);
-    NullStatsReceiver nullStatsReceiver = new NullStatsReceiver();
 
     // Act
-    OptimizedEdgePool actualOptimizedEdgePool = new OptimizedEdgePool(intArray, 3, nullStatsReceiver);
+    OptimizedEdgePool actualOptimizedEdgePool = new OptimizedEdgePool(intArray, 3, new NullStatsReceiver());
 
     // Assert
-    StatsReceiver actualStatsReceiver = actualOptimizedEdgePool.scopedStatsReceiver;
+    StatsReceiver statsReceiver = actualOptimizedEdgePool.scopedStatsReceiver;
     EdgePoolReaderAccessibleInfo edgePoolReaderAccessibleInfo = actualOptimizedEdgePool.readerAccessibleInfo;
     IntToIntPairHashMap intToIntPairHashMap = actualOptimizedEdgePool.intToIntPairHashMap;
     assertEquals(3, actualOptimizedEdgePool.maxNumEdges);
@@ -118,7 +116,7 @@ public class OptimizedEdgePoolDiffblueTest {
     assertEquals(8, actualOptimizedEdgePool.numOfNodes);
     BigIntArray edges = edgePoolReaderAccessibleInfo.getEdges();
     IntToIntPairHashMap actualNodeInfo = edgePoolReaderAccessibleInfo.getNodeInfo();
-    assertSame(nullStatsReceiver, actualStatsReceiver);
+    assertTrue(statsReceiver instanceof NullStatsReceiver);
     assertTrue(bigIntArray instanceof com.twitter.graphjet.hashing.ShardedBigIntArray);
     assertTrue(edges instanceof com.twitter.graphjet.hashing.ShardedBigIntArray);
     double actualFillPercentage = bigIntArray.getFillPercentage();

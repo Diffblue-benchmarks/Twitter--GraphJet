@@ -15,14 +15,15 @@ public class SalsaInternalStateDiffblueTest {
   @Test(timeout=10000)
   public void constructorTest() {
     // Arrange
-    SmallLeftRegularBipartiteGraph smallLeftRegularBipartiteGraph = new SmallLeftRegularBipartiteGraph(3, 1, 3, 3, 10.0,
-        3, new NullStatsReceiver());
+    SmallLeftRegularBipartiteGraph bipartiteGraph = new SmallLeftRegularBipartiteGraph(3, 1, 3, 3, 10.0, 3,
+        new NullStatsReceiver());
     SalsaStats salsaStats = new SalsaStats();
 
     // Act
-    SalsaInternalState actualSalsaInternalState = new SalsaInternalState(smallLeftRegularBipartiteGraph, salsaStats, 1);
+    SalsaInternalState actualSalsaInternalState = new SalsaInternalState(bipartiteGraph, salsaStats, 1);
 
     // Assert
+    BipartiteGraph expectedBipartiteGraph = actualSalsaInternalState.bipartiteGraph;
     Long2ObjectMap<NodeInfo> visitedRightNodes = actualSalsaInternalState.getVisitedRightNodes();
     SalsaStats actualSalsaStats = actualSalsaInternalState.getSalsaStats();
     BipartiteGraph actualBipartiteGraph = actualSalsaInternalState.getBipartiteGraph();
@@ -32,19 +33,19 @@ public class SalsaInternalStateDiffblueTest {
     assertTrue(actualSalsaInternalState.getNonZeroSeedSet() instanceof it.unimi.dsi.fastutil.longs.LongOpenHashSet);
     assertTrue(currentLeftNodes instanceof it.unimi.dsi.fastutil.longs.Long2IntOpenHashMap);
     assertTrue(currentRightNodes instanceof it.unimi.dsi.fastutil.longs.Long2IntOpenHashMap);
-    assertSame(smallLeftRegularBipartiteGraph, actualBipartiteGraph);
+    assertSame(expectedBipartiteGraph, actualBipartiteGraph);
     assertSame(salsaStats, actualSalsaStats);
   }
 
   @Test(timeout=10000)
   public void getBipartiteGraphTest() {
     // Arrange
-    SmallLeftRegularBipartiteGraph smallLeftRegularBipartiteGraph = new SmallLeftRegularBipartiteGraph(3, 1, 3, 3, 10.0,
-        3, new NullStatsReceiver());
+    SmallLeftRegularBipartiteGraph bipartiteGraph = new SmallLeftRegularBipartiteGraph(3, 1, 3, 3, 10.0, 3,
+        new NullStatsReceiver());
+    SalsaInternalState salsaInternalState = new SalsaInternalState(bipartiteGraph, new SalsaStats(), 1);
 
     // Act and Assert
-    assertSame(smallLeftRegularBipartiteGraph,
-        (new SalsaInternalState(smallLeftRegularBipartiteGraph, new SalsaStats(), 1)).getBipartiteGraph());
+    assertSame(salsaInternalState.bipartiteGraph, salsaInternalState.getBipartiteGraph());
   }
 }
 

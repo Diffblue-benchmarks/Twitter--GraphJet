@@ -1,6 +1,7 @@
 package com.twitter.graphjet.algorithms.filters;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertTrue;
 import com.twitter.graphjet.stats.NullStatsReceiver;
@@ -8,9 +9,15 @@ import org.junit.Test;
 
 public class TweetTimeRangeFilterDiffblueTest {
   @Test(timeout=10000)
-  public void filterTest() {
+  public void filterTest2() {
     // Arrange, Act and Assert
     assertTrue((new TweetTimeRangeFilter(1L, 1L, new NullStatsReceiver())).filter(1L));
+  }
+
+  @Test(timeout=10000)
+  public void filterTest() {
+    // Arrange, Act and Assert
+    assertFalse((new TweetTimeRangeFilter(1L, 9223372036854775807L, new NullStatsReceiver())).filter(1L));
   }
 
   @Test(timeout=10000)

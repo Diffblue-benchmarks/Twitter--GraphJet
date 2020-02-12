@@ -16,19 +16,21 @@ import org.junit.rules.ExpectedException;
 public class ArrayBasedIntToIntArrayMapDiffblueTest {
   @Rule
   public ExpectedException thrown = ExpectedException.none();
+
   @Test(timeout=10000)
   public void constructorTest2() {
     // Arrange
-    ShardedBigIntArray shardedBigIntArray = new ShardedBigIntArray(10, 1, 1, new NullStatsReceiver());
+    ShardedBigIntArray edges = new ShardedBigIntArray(10, 1, 1, new NullStatsReceiver());
 
     // Act
     ArrayBasedIntToIntArrayMap.ReaderAccessibleInfo actualReaderAccessibleInfo = new ArrayBasedIntToIntArrayMap.ReaderAccessibleInfo(
-        shardedBigIntArray, new IntToIntPairArrayIndexBasedMap(10, 42, new NullStatsReceiver()));
+        edges, new IntToIntPairArrayIndexBasedMap(10, 42, new NullStatsReceiver()));
 
     // Assert
     assertTrue(actualReaderAccessibleInfo.nodeInfo instanceof IntToIntPairArrayIndexBasedMap);
-    assertSame(shardedBigIntArray, actualReaderAccessibleInfo.edges);
+    assertTrue(actualReaderAccessibleInfo.edges instanceof ShardedBigIntArray);
   }
+
   @Test(timeout=10000)
   public void getTest2() {
     // Arrange and Act
@@ -39,6 +41,7 @@ public class ArrayBasedIntToIntArrayMapDiffblueTest {
     assertFalse(actualHasNextResult);
     assertEquals(0, ((IntArrayIterator) actualGetResult).size());
   }
+
   @Test(timeout=10000)
   public void putTest() {
     // Arrange
@@ -56,26 +59,31 @@ public class ArrayBasedIntToIntArrayMapDiffblueTest {
     assertEquals(0.006103515625, readerAccessibleInfo.edges.getFillPercentage(), 0.0);
     assertEquals(0.002288818359375, readerAccessibleInfo1.array.getFillPercentage(), 0.0);
   }
+
   @Test(timeout=10000)
   public void crossMemoryBarrierTest() {
     // Arrange, Act and Assert
     assertEquals(0, (new ArrayBasedIntToIntArrayMap(10, 3, new NullStatsReceiver())).crossMemoryBarrier());
   }
+
   @Test(timeout=10000)
   public void getArrayLengthTest() {
     // Arrange, Act and Assert
     assertEquals(0, (new ArrayBasedIntToIntArrayMap(10, 3, new NullStatsReceiver())).getArrayLength(1));
   }
+
   @Test(timeout=10000)
   public void getNodeInfoTest() {
     // Arrange, Act and Assert
     assertEquals(-1L, (new ArrayBasedIntToIntArrayMap(10, 3, new NullStatsReceiver())).getNodeInfo(1));
   }
+
   @Test(timeout=10000)
   public void getNumberedEdgeTest() {
     // Arrange, Act and Assert
     assertEquals(0, (new ArrayBasedIntToIntArrayMap(10, 3, new NullStatsReceiver())).getNumberedEdge(1, 10));
   }
+
   @Test(timeout=10000)
   public void constructorTest() {
     // Arrange and Act
@@ -101,6 +109,7 @@ public class ArrayBasedIntToIntArrayMapDiffblueTest {
     assertEquals(0.0, bigIntArray1.getFillPercentage(), 0.0);
     assertEquals(1, ((ShardedBigIntArray) bigIntArray1).readerAccessibleInfo.array.length);
   }
+
   @Test(timeout=10000)
   public void getTest() {
     // Arrange
@@ -118,11 +127,18 @@ public class ArrayBasedIntToIntArrayMapDiffblueTest {
     assertSame(optimizedEdgeIterator, actualGetResult);
     assertTrue(actualGetResult.hasNext());
   }
+
   @Test(timeout=10000)
-  public void incrementFeatureValueTest() {
+  public void incrementFeatureValueTest2() {
     // Arrange, Act and Assert
     thrown.expect(ArrayIndexOutOfBoundsException.class);
     (new ArrayBasedIntToIntArrayMap(10, 3, new NullStatsReceiver())).incrementFeatureValue(1, (byte) 1);
+  }
+
+  @Test(timeout=10000)
+  public void incrementFeatureValueTest() {
+    // Arrange, Act and Assert
+    assertFalse((new ArrayBasedIntToIntArrayMap(10, 3, new NullStatsReceiver())).incrementFeatureValue(1, (byte) 127));
   }
 }
 

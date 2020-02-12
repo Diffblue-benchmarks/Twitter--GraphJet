@@ -1,6 +1,7 @@
 package com.twitter.graphjet.algorithms.filters;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertTrue;
 import com.twitter.graphjet.bipartite.SmallLeftRegularBipartiteGraph;
@@ -9,6 +10,21 @@ import com.twitter.graphjet.stats.NullStatsReceiver;
 import org.junit.Test;
 
 public class MinNumInteractionsFilterDiffblueTest {
+  @Test(timeout=10000)
+  public void filterResultTest2() {
+    // Arrange
+    SmallLeftRegularBipartiteGraph bipartiteGraph = new SmallLeftRegularBipartiteGraph(3, 1, 3, 3, 10.0, 3,
+        new NullStatsReceiver());
+    MinNumInteractionsFilter minNumInteractionsFilter = new MinNumInteractionsFilter(bipartiteGraph, 0,
+        new NullStatsReceiver());
+    SmallArrayBasedLongToDoubleMap smallArrayBasedLongToDoubleMap = new SmallArrayBasedLongToDoubleMap();
+    SmallArrayBasedLongToDoubleMap smallArrayBasedLongToDoubleMap1 = new SmallArrayBasedLongToDoubleMap();
+
+    // Act and Assert
+    assertFalse(minNumInteractionsFilter.filterResult(1L, new SmallArrayBasedLongToDoubleMap[]{
+        smallArrayBasedLongToDoubleMap, smallArrayBasedLongToDoubleMap1, new SmallArrayBasedLongToDoubleMap()}));
+  }
+
   @Test(timeout=10000)
   public void filterResultTest() {
     // Arrange

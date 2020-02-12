@@ -34,6 +34,33 @@ public class NodeValueEntryDiffblueTest {
   }
 
   @Test(timeout=10000)
+  public void compareToTest4() {
+    // Arrange
+    NodeValueEntry nodeValueEntry = new NodeValueEntry(0L, 10.0);
+
+    // Act and Assert
+    assertEquals(-1, nodeValueEntry.compareTo(new NodeValueEntry(1L, 10.0)));
+  }
+
+  @Test(timeout=10000)
+  public void compareToTest3() {
+    // Arrange
+    NodeValueEntry nodeValueEntry = new NodeValueEntry(1L, 10.0);
+
+    // Act and Assert
+    assertEquals(1, nodeValueEntry.compareTo(new NodeValueEntry(1L, 0.5)));
+  }
+
+  @Test(timeout=10000)
+  public void compareToTest2() {
+    // Arrange
+    NodeValueEntry nodeValueEntry = new NodeValueEntry(1L, 0.5);
+
+    // Act and Assert
+    assertEquals(-1, nodeValueEntry.compareTo(new NodeValueEntry(1L, 10.0)));
+  }
+
+  @Test(timeout=10000)
   public void compareToTest() {
     // Arrange
     NodeValueEntry nodeValueEntry = new NodeValueEntry(1L, 10.0);

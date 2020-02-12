@@ -2,7 +2,7 @@ package com.twitter.graphjet.bipartite.edgepool;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertSame;
+import static org.junit.Assert.assertTrue;
 import com.twitter.graphjet.stats.NullStatsReceiver;
 import org.junit.Rule;
 import org.junit.Test;
@@ -28,15 +28,12 @@ public class PowerLawDegreeEdgeIteratorDiffblueTest {
 
   @Test(timeout=10000)
   public void constructorTest() {
-    // Arrange
-    PowerLawDegreeEdgePool powerLawDegreeEdgePool = new PowerLawDegreeEdgePool(10, 1, 10.0, new NullStatsReceiver());
-
-    // Act
+    // Arrange and Act
     PowerLawDegreeEdgeIterator actualPowerLawDegreeEdgeIterator = new PowerLawDegreeEdgeIterator(
-        powerLawDegreeEdgePool);
+        new PowerLawDegreeEdgePool(10, 1, 10.0, new NullStatsReceiver()));
 
     // Assert
-    assertSame(powerLawDegreeEdgePool, actualPowerLawDegreeEdgeIterator.powerLawDegreeEdgePool);
+    assertTrue(actualPowerLawDegreeEdgeIterator.powerLawDegreeEdgePool instanceof PowerLawDegreeEdgePool);
     assertEquals(0, actualPowerLawDegreeEdgeIterator.regularDegreeEdgeIterators.length);
   }
 

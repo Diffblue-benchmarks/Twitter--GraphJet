@@ -3,7 +3,6 @@ package com.twitter.graphjet.bipartite.edgepool;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertSame;
-import static org.junit.Assert.assertTrue;
 import com.twitter.graphjet.stats.NullStatsReceiver;
 import org.junit.Test;
 
@@ -60,9 +59,11 @@ public class RegularDegreeEdgeIteratorDiffblueTest {
 
   @Test(timeout=10000)
   public void constructorTest() {
-    // Arrange, Act and Assert
-    assertTrue((new RegularDegreeEdgeIterator(new RegularDegreeEdgePool(10, 3,
-        new NullStatsReceiver()))).regularDegreeEdgePool instanceof RegularDegreeEdgePool);
+    // Arrange
+    RegularDegreeEdgePool regularDegreeEdgePool = new RegularDegreeEdgePool(10, 3, new NullStatsReceiver());
+
+    // Act and Assert
+    assertSame(regularDegreeEdgePool, (new RegularDegreeEdgeIterator(regularDegreeEdgePool)).regularDegreeEdgePool);
   }
 
   @Test(timeout=10000)
